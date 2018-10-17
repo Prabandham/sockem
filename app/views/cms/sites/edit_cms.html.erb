@@ -1,0 +1,32 @@
+<% site_name = @data[:site_name] %>
+<% pages = @data[:pages] %>
+<% assets = @data[:assets] %>
+<% layouts = @data[:layouts] %>
+<ul id="tree">
+  <li><a href="#">Assets</a>
+    <ul>
+      <li><%= link_to("New Asset", new_asset_path) %></li>
+      <% assets.each do |asset| %>
+        <li><%= asset.name %></li>
+      <% end %>
+    </ul>
+  </li>
+
+  <li><a href="#">Layouts</a>
+    <ul>
+      <li><%= link_to("New Layout", new_layout_path) %></li>
+      <% layouts.each do |layout| %>
+        <li><%= layout.name %></li>
+      <% end %>
+    </ul>
+  </li>
+
+  <li><a href="#">Pages</a>
+    <ul>
+      <li><%= link_to("New Page", new_page_path) %></li>
+      <% pages.each do |layout| %>
+        <li><%= page.name %></li>
+      <% end %>
+    </ul>
+  </li>
+</ul>

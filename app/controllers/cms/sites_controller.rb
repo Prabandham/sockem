@@ -1,6 +1,6 @@
 module Cms
   class SitesController < ApplicationController
-    before_action :set_site, only: [:show, :edit, :update, :destroy]
+    before_action :set_site, only: [:show, :edit, :edit_cms, :update, :destroy]
 
     # GET /sites
     # GET /sites.json
@@ -20,6 +20,15 @@ module Cms
 
     # GET /sites/1/edit
     def edit
+    end
+
+    def edit_cms
+      @data = {
+          site_name: @site.name,
+          pages: @site.pages,
+          assets: @site.assets,
+          layouts: @site.layouts
+      }
     end
 
     # POST /sites
@@ -65,7 +74,7 @@ module Cms
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_site
-      @site = Site.find(params[:id])
+      @site = Site.find(params[:id] || params[:site_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

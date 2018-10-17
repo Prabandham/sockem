@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     resources :assets
     resources :layouts
     resources :pages
-    resources :sites
+    resources :sites do
+      get :edit_cms
+    end
   end
 end

@@ -16,4 +16,9 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require vendor/tree
 //= require_tree .
+
+$(function() {
+    $('#tree').treed({openedClass : 'fas fa-folder-open', closedClass : 'fas fa-folder'});
+});
