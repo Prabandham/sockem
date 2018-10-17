@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @layout.name %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @layout.content %>
+</p>
+
+<p>
+  <strong>Site:</strong>
+  <%= @layout.site %>
+</p>
+
+<%= link_to 'Edit', edit_layout_path(@layout) %> |
+<%= link_to 'Back', layouts_path %>
