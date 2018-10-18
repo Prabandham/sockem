@@ -11,6 +11,9 @@ module Cms
     # GET /pages/1
     # GET /pages/1.json
     def show
+      respond_to do |format|
+        format.json { render json: @page }
+      end
     end
 
     # GET /pages/new
@@ -25,14 +28,15 @@ module Cms
     # POST /pages
     # POST /pages.json
     def create
-      @page = Page.new(page_params)
+      @page = Page.find_or_initialize_by(
+          name: page_params[:name],
+          site_id: page_params[:site_id]
+      )
 
       respond_to do |format|
-        if @page.save
-          format.html { redirect_to @page, notice: 'Page was successfully created.' }
-          format.json { render :show, status: :created, location: @page }
+        if @page.update_attributes(page_params)
+          format.json { render json: @page, status: :created }
         else
-          format.html { render :new }
           format.json { render json: @page.errors, status: :unprocessable_entity }
         end
       end

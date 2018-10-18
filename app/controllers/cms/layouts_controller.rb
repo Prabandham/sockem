@@ -25,14 +25,15 @@ module Cms
     # POST /layouts
     # POST /layouts.json
     def create
-      @layout = Layout.new(layout_params)
+      @layout = Layout.find_or_initialize_by(
+          name: layout_params[:name],
+          site_id: layout_params[:site_id]
+      )
 
       respond_to do |format|
-        if @layout.save
-          format.html { redirect_to @layout, notice: 'Layout was successfully created.' }
-          format.json { render :show, status: :created, location: @layout }
+        if @layout.update_attributes(layout_params)
+          format.json { render json: @layout, status: :created }
         else
-          format.html { render :new }
           format.json { render json: @layout.errors, status: :unprocessable_entity }
         end
       end
@@ -70,7 +71,7 @@ module Cms
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def layout_params
-      params.require(:layout).permit(:name, :content, :site)
+      params.require(:layout).permit(:name, :content, :site_id)
     end
   end
 end

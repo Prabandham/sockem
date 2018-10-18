@@ -10,6 +10,11 @@
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+      <a class="navbar-brand" href="#">Logo</a>
+    </nav>
+    <div class="container-fluid" id="app">
+      <%= yield %>
+    </div>
   </body>
 </html>
