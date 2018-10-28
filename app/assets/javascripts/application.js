@@ -18,18 +18,26 @@
 //= require activestorage
 //= require turbolinks
 //= require codemirror
-//= require codemirror/modes/ruby
+//= require codemirror/addons/hint/show-hint
+//= require codemirror/addons/hint/xml-hint
+//= require codemirror/addons/hint/html-hint
+//= require codemirror/modes/xml
+//= require codemirror/modes/htmlmixed
 //= require vendor/tree
 //= require vendor/resize-bs-grid
+//= require vendor/bootstrap-dynamic-tabs
 //= require_tree .
 
 $(function() {
-    $('.cms-editor-grid').resizableGrid();
+    window.openEditors = 0;
+    $("#explorer").resizable();
+    window.tabs = $("#editor_tabs").bootstrapDynamicTabs();
     $('#tree').treed({openedClass : 'fas fa-folder-open', closedClass : 'fas fa-folder'});
     $('#tree').height(window.outerHeight);
     $("#preview_content").height(window.outerHeight);
 
     $("#site_name").prev().addClass("purple-icon");
+    $("#site_name").click();
 
     $("#new-layout").on('click', function(e) {
         e.preventDefault();
@@ -49,14 +57,9 @@ $(function() {
         var data = {
             name: $(this).html(),
             site_id: $("#current-site-id").html()
-        }
+        };
         $.post("/cms/layouts", { layout: data }, function(result) {
-            CodeMirror.fromTextArea(document.getElementById("code"), {
-                lineNumbers: true,
-                mode: "html",
-                theme: "material",
-                value: result.content,
-            });
+            SetEditor(result);
         });
     });
 
@@ -64,14 +67,9 @@ $(function() {
         var data = {
             name: $(this).html(),
             site_id: $("#current-site-id").html()
-        }
+        };
         $.post("/cms/pages", { page: data }, function(result) {
-            CodeMirror.fromTextArea(document.getElementById("code"), {
-                lineNumbers: true,
-                mode: "html",
-                theme: "material",
-                value: result.content,
-            });
+            SetEditor(result);
         });
     });
 
@@ -80,13 +78,41 @@ $(function() {
         var id = $(this).attr("id");
         var url = "/cms/" + kind + "/" + id;
         $.get(url, function(result) {
-            // Create a form and append to html of the content.
-            // Then set the editor to the content of that form
-            CodeMirror.fromTextArea(document.getElementById("code"), {
-                lineNumbers: true,
-                mode: "html",
-                theme: "material",
-            }).setValue(result.content);
+            SetEditor(result);
         });
     });
+
+    function SetEditor(result) {
+        var height = $("#preview_content").height();
+        var width = $("#preview_content").width();
+        var id = constructTab(result.name);
+        var editor = CodeMirror.fromTextArea(document.getElementById(id), {
+            lineNumbers: true,
+            mode: "text/html",
+            htmlMode: true,
+            extraKeys: {"Ctrl-Space": "autocomplete"},
+            theme: "material",
+        });
+        editor.setSize(width + 29, height - 29);
+        editor.setValue(result.content);
+        editor.on('change', editor => {
+            // (editor.getValue());
+        });
+    }
+
+    function constructTab(name) {
+        var editorId = window.openEditors + 1;
+        window.openEditors = editorId;
+        var friendlyID = "code_" + editorId;
+        var tabID = "tab_" + editorId;
+        var body = "<textarea id=" + friendlyID + " \"class=d-none\"></textarea>\n";
+
+        tabs.addTab({
+            title: name,
+            html: body,
+            closable: true,
+            ID: tabID
+        });
+        return friendlyID;
+    }
 });

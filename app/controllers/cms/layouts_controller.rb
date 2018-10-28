@@ -11,6 +11,9 @@ module Cms
     # GET /layouts/1
     # GET /layouts/1.json
     def show
+      respond_to do |format|
+        format.json { render json: @layout }
+      end
     end
 
     # GET /layouts/new

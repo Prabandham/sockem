@@ -6,7 +6,7 @@
 <div class="cms-editor-grid" id="cms-editor-grid">
   <p id="current-site-id" class="d-none"><%= @site.id %></p>
   <div class="row">
-    <div class="col-2">
+    <div class="col-2" id="explorer">
       <ul id="tree">
         <li><a href="#" id="site_name"><%= site_name %></a>
           <ul>
@@ -42,7 +42,8 @@
     </div>
 
     <div class="col-10" id="preview_content">
-      <textarea id="code" class="d-none"></textarea>
+      <div id="editor_tabs">
+      </div>
     </div>
   </div>
 </div>
