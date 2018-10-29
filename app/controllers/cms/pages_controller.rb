@@ -44,6 +44,11 @@ module Cms
 
     # PATCH/PUT /pages/1
     # PATCH/PUT /pages/1.json
+    # NOTE to associate a page to a layout use a template tag as discussed with Abhi
+    # {{ layout "LAYOUT_TO_USE" }}
+    # on the top of every page.
+    # This will be stripped out and saved every time a layout has to be changed
+    # they have to add the above layout tag. And it will read it and update
     def update
       respond_to do |format|
         if @page.update(page_params)

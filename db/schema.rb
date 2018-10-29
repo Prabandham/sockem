@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_17_061153) do
+ActiveRecord::Schema.define(version: 2018_10_29_052848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 2018_10_17_061153) do
     t.bigint "site_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "layout_id"
+    t.index ["layout_id"], name: "index_pages_on_layout_id"
     t.index ["name"], name: "index_pages_on_name"
     t.index ["path"], name: "index_pages_on_path"
     t.index ["site_id"], name: "index_pages_on_site_id"
@@ -63,5 +65,6 @@ ActiveRecord::Schema.define(version: 2018_10_17_061153) do
   end
 
   add_foreign_key "assets", "sites"
+  add_foreign_key "pages", "layouts"
   add_foreign_key "pages", "sites"
 end
