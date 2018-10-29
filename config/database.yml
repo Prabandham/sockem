@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: sockem_production
-  username: sockem
+  username: <%= ENV['PSQL_USER'] %>
   password: <%= ENV['SOCKEM_DATABASE_PASSWORD'] %>
