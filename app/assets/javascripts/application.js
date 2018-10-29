@@ -39,6 +39,10 @@ $(function() {
     $("#site_name").prev().addClass("purple-icon");
     $("#site_name").click();
 
+    window.setInterval(function(){
+        saveAllEditors();
+    }, 10000);
+
     $("#new-layout").on('click', function(e) {
         e.preventDefault();
         var element = $("<li contenteditable='true' id='new-layout-name'>New Layout Name</li>");
@@ -78,14 +82,18 @@ $(function() {
         var id = $(this).attr("id");
         var url = "/cms/" + kind + "/" + id;
         $.get(url, function(result) {
-            SetEditor(result);
+            SetEditor(result, kind);
         });
     });
 
-    function SetEditor(result) {
+    function SetEditor(result, kind) {
         var height = $("#preview_content").height();
         var width = $("#preview_content").width();
-        var id = constructTab(result.name);
+        var id = constructTab(result.name, result.id, kind);
+        var content = result.content;
+        if(content === null) {
+            content = "";
+        }
         var editor = CodeMirror.fromTextArea(document.getElementById(id), {
             lineNumbers: true,
             mode: "text/html",
@@ -94,25 +102,35 @@ $(function() {
             theme: "material",
         });
         editor.setSize(width + 29, height - 29);
-        editor.setValue(result.content);
+        editor.setValue(content);
         editor.on('change', editor => {
-            // (editor.getValue());
+            // TODO set not saved * on the tab.
+            var textArea = $(editor.getTextArea());
+            var id = textArea.attr("id").split("_")[1];
+            var name = textArea.attr("attr-name");
+            var tabId = "tab_" + id;
+            var query = "a[href$=" + tabId + "]";
+            var content = "<button class=\"close\" type=\"button\">x</button>\n" +
+                name + "<span class='text-danger'>*</span>";
+            $(query).html(content);
+            textArea.val(editor.getValue());
         });
     }
 
-    function constructTab(name) {
-        var editorId = window.openEditors + 1;
-        window.openEditors = editorId;
-        var friendlyID = "code_" + editorId;
-        var tabID = "tab_" + editorId;
-        var body = "<textarea id=" + friendlyID + " \"class=d-none\"></textarea>\n";
+    function constructTab(name, id, kind) {
+        var friendlyID = "code_" + id + "_" + kind;
+        var tabID = "tab_" + id;
+        var body = "<textarea id=" + friendlyID + " \"class=d-none\" attr-name=" + name + "></textarea>\n";
 
         tabs.addTab({
             title: name,
             html: body,
             closable: true,
-            ID: tabID
+            id: tabID
         });
         return friendlyID;
+    }
+
+    function saveAllEditors() {
     }
 });
