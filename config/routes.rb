@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  root 'home#index'
   scope :cms, module: "cms", path: "cms" do
     resources :assets
     resources :layouts
@@ -8,4 +9,5 @@ Rails.application.routes.draw do
       get :edit_cms
     end
   end
+  match "*path", to: "home#index", via: :all
 end

@@ -1,19 +1,23 @@
 class Page < ApplicationRecord
   belongs_to :site
+  belongs_to :layout
   before_save :determine_path, if: Proc.new { |page| page.path.blank? }
   validates :name, presence: true
   validates :name, uniqueness: { scope: :site_id }
 
+  def layout
+    Layout.find(layout_id) rescue nil
+  end
   private
 
   def determine_path
     case name
-    when "index"
+    when "index.html"
       self.path = "/"
-    when "home"
+    when "home.html"
       self.path = "/"
     else
-      self.path = name.split(".").first
+      self.path = "/" + name.split(".").first
     end
   end
 end

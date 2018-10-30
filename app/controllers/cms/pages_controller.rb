@@ -51,7 +51,7 @@ module Cms
     # they have to add the above layout tag. And it will read it and update
     def update
       respond_to do |format|
-        if @page.update(page_params)
+        if update_layout && @page.update(page_params)
           format.json { render json: @page, status: :ok }
         else
           format.json { render json: @page.errors, status: :unprocessable_entity }
@@ -78,6 +78,14 @@ module Cms
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
       params.require(:page).permit(:name, :path, :content, :site_id)
+    end
+
+    def update_layout
+      layout_string = page_params[:content].match(/<!--(.*?)-->/).to_a.first
+      layout_name = layout_string.gsub("<!--", "").gsub("-->", "").squish.split("=").last + ".html" if layout_string
+      layout = Layout.find_by(name: layout_name)
+      @page.layout_id = layout.id if layout
+      @page.save
     end
   end
 end
