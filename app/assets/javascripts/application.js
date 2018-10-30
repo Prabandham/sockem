@@ -28,6 +28,24 @@
 //= require vendor/bootstrap-dynamic-tabs
 //= require_tree .
 
+jQuery.each( [ "put", "delete" ], function( i, method ) {
+    jQuery[ method ] = function( url, data, callback, type ) {
+        if ( jQuery.isFunction( data ) ) {
+            type = type || callback;
+            callback = data;
+            data = undefined;
+        }
+
+        return jQuery.ajax({
+            url: url,
+            type: method,
+            dataType: type,
+            data: data,
+            success: callback
+        });
+    };
+});
+
 $(function() {
     window.openEditors = 0;
     $("#explorer").resizable();
@@ -115,7 +133,13 @@ $(function() {
             $(query).html(content);
             textArea.val(editor.getValue());
         });
+        $("#" + id).val(content);
     }
+
+    $("body").on("click", ".close", function() {
+        var element = $($(this).parent()[0]).attr("href").split("#")[1];
+        tabs.closeById(element);
+    });
 
     function constructTab(name, id, kind) {
         var friendlyID = "code_" + id + "_" + kind;
@@ -132,5 +156,30 @@ $(function() {
     }
 
     function saveAllEditors() {
+        if($(".nav-tabs > li > a").length > 0) {
+            $.each($(".nav-tabs > li > a"), function(i,tab_id) {
+                var contentId = $(tab_id).attr("href");
+                var regex = contentId + " > textarea";
+                var textArea = $(regex);
+                var name = textArea.attr("attr-name");
+                var textAreaId = $(regex).attr("id");
+                var elmID = textAreaId.split("_")[1];
+                var data;
+                var kind = textAreaId.split("_")[2];
+                var url = "/cms/" + kind + "/" + elmID;
+                if(kind == "pages") {
+                    data = { page: { content: $(regex).val() } };
+                } else {
+                    data = { layout: { content: $(regex).val() } };
+                }
+                $.put(url, data, function(result) {
+                    var tabId = contentId.split("#")[1];
+                    var query = "a[href$=" + tabId + "]";
+                    var content = "<button class=\"close\" type=\"button\">x</button>\n" +
+                        name;
+                    $(query).html(content);
+                });
+            });
+        }
     }
 });

@@ -47,10 +47,8 @@ module Cms
     def update
       respond_to do |format|
         if @layout.update(layout_params)
-          format.html { redirect_to @layout, notice: 'Layout was successfully updated.' }
-          format.json { render :show, status: :ok, location: @layout }
+          format.json { render json: @layout, status: :ok }
         else
-          format.html { render :edit }
           format.json { render json: @layout.errors, status: :unprocessable_entity }
         end
       end
