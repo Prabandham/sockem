@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :pages
     resources :sites do
       get :edit_cms
+      post :add_assets
     end
   end
   match "*path", to: "home#index", via: :all

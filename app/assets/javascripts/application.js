@@ -61,6 +61,11 @@ $(function() {
         saveAllEditors();
     }, 10000);
 
+    $("#new-asset").on('click', function(e) {
+        e.preventDefault();
+        alert("TODO Show modal for asset selection");
+    });
+
     $("#new-layout").on('click', function(e) {
         e.preventDefault();
         var element = $("<li contenteditable='true' id='new-layout-name'>New Layout Name</li>");

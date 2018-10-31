@@ -1,6 +1,6 @@
 module Cms
   class SitesController < ApplicationController
-    before_action :set_site, only: [:show, :edit, :edit_cms, :update, :destroy]
+    before_action :set_site, only: [:show, :edit, :edit_cms, :update, :destroy, :add_assets]
 
     # GET /sites
     # GET /sites.json
@@ -61,6 +61,11 @@ module Cms
       end
     end
 
+    def add_assets
+      binding.pry
+      @site.assets.attach(params[:assets])
+    end
+
     # DELETE /sites/1
     # DELETE /sites/1.json
     def destroy
@@ -79,7 +84,7 @@ module Cms
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def site_params
-      params.require(:site).permit(:name, :domain, :description, :google_analytics_key, :meta)
+      params.require(:site).permit(:name, :domain, :description, :google_analytics_key, :meta, assets: [])
     end
   end
 end
