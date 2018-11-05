@@ -13,19 +13,38 @@
             <li><a href="#">Assets</a>
               <ul>
                 <li><a href="#" data-toggle= "modal" data-target= "#AssetFormModal">Add Assets</a></li>
-                <% assets.each do |asset| %>
-                  <li class="edit-asset" id="<%= asset.id %>">
-                    <span>
-                      <% if asset.name.include?(".js") %>
+                <li><a href="#">Javascripts</a>
+                  <ul>
+                    <% assets.select { |a| a.kind == "js" } .each do |asset| %>
+                      <li class="edit-asset" id="<%= asset.id %>">
                         <i class="fab fa-js orange-icon"> </i>
                         <%= asset.name %>
-                      <% elsif asset.name.include?(".css") %>
-                        <i class="fab fa-css3 pink-icon"> </i>
+                      </li>
+                    <% end %>
+                  </ul>
+                </li>
+
+                <li><a href="#">Stylesheets</a>
+                  <ul>
+                    <% assets.select { |a| a.kind == "css" } .each do |asset| %>
+                      <li class="edit-asset" id="<%= asset.id %>">
+                        <i class="fab fa-js pink-icon"> </i>
                         <%= asset.name %>
-                      <% end %>
-                    </span>
-                  </li>
-                <% end %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </li>
+
+                <li><a href="#">Images</a>
+                  <ul>
+                    <% assets.select { |a| a.kind == "image" } .each do |asset| %>
+                      <li class="edit-asset" id="<%= asset.id %>">
+                        <i class="fab fa-js pink-icon"> </i>
+                        <%= asset.name %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </li>
               </ul>
             </li>
 
