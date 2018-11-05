@@ -7,7 +7,6 @@ class HomeController < ApplicationController
     render :no_site and return unless @site
     template = Liquid::Template.parse(@page.layout.content)
     @parsed_template = template.render({"page" => @page.content})
-    puts @parsed_template
   end
 
   private

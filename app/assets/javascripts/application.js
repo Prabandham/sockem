@@ -86,7 +86,7 @@ $(function() {
             site_id: $("#current-site-id").html()
         };
         $.post("/cms/layouts", { layout: data }, function(result) {
-            SetEditor(result);
+            SetEditor(result, "layouts");
         });
     });
 
@@ -96,7 +96,7 @@ $(function() {
             site_id: $("#current-site-id").html()
         };
         $.post("/cms/pages", { page: data }, function(result) {
-            SetEditor(result);
+            SetEditor(result, "pages");
         });
     });
 

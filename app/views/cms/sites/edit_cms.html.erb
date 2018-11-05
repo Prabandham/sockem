@@ -12,9 +12,9 @@
           <ul>
             <li><a href="#">Assets</a>
               <ul>
-                <li><%= link_to("New Asset", new_asset_path, id: "new-asset") %></li>
+                <li><a href="#" data-toggle= "modal" data-target= "#AssetFormModal">Add Assets</a></li>
                 <% assets.each do |asset| %>
-                  <li><%= asset.name %></li>
+                  <li><%= asset.filename %></li>
                 <% end %>
               </ul>
             </li>
@@ -44,6 +44,31 @@
     <div class="col-10" id="preview_content">
       <div id="editor_tabs">
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal fade" id="AssetFormModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Upload Assets</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <%= form_with(url: :site_add_assets, local: true, remote: true) do |form| %>
+          <%= form.label :assets %>
+          <%= form.file_field :assets, multiple: true %>
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <%= form.submit %>
+          </div>
+        <% end %>
     </div>
   </div>
 </div>

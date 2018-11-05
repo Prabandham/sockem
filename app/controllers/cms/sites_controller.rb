@@ -62,8 +62,8 @@ module Cms
     end
 
     def add_assets
-      binding.pry
       @site.assets.attach(params[:assets])
+      @site.save
     end
 
     # DELETE /sites/1
