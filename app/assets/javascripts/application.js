@@ -50,7 +50,7 @@ jQuery.each( [ "put", "delete" ], function( i, method ) {
 
 $(function() {
     window.openEditors = 0;
-    $("#explorer").resizable();
+    $(".cms-editor-grid").resizableGrid();
     window.tabs = $("#editor_tabs").bootstrapDynamicTabs();
     $('#tree').treed({openedClass : 'fas fa-folder-open', closedClass : 'fas fa-folder'});
     $('#tree').height(window.outerHeight);
