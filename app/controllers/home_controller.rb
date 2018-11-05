@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   layout false
 
   def index
-    render :no_site and return unless @site
+    render :no_site and return unless @site && @page && @page.layout
     template = Liquid::Template.parse(@page.layout.content)
     @parsed_template = template.render({"page" => @page.content})
   end

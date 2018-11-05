@@ -6,7 +6,7 @@
 <div class="cms-editor-grid" id="cms-editor-grid">
   <p id="current-site-id" class="d-none"><%= @site.id %></p>
   <div class="row">
-    <div class="col-2" id="explorer">
+    <div class="col-3" id="explorer">
       <ul id="tree">
         <li><a href="#" id="site_name"><%= site_name %></a>
           <ul>
@@ -14,7 +14,17 @@
               <ul>
                 <li><a href="#" data-toggle= "modal" data-target= "#AssetFormModal">Add Assets</a></li>
                 <% assets.each do |asset| %>
-                  <li><%= asset.filename %></li>
+                  <li class="edit-asset" id="<%= asset.id %>">
+                    <span>
+                      <% if asset.name.include?(".js") %>
+                        <i class="fab fa-js orange-icon"> </i>
+                        <%= asset.name %>
+                      <% elsif asset.name.include?(".css") %>
+                        <i class="fab fa-css3 pink-icon"> </i>
+                        <%= asset.name %>
+                      <% end %>
+                    </span>
+                  </li>
                 <% end %>
               </ul>
             </li>
@@ -41,7 +51,7 @@
       </ul>
     </div>
 
-    <div class="col-10" id="preview_content">
+    <div class="col-9" id="preview_content">
       <div id="editor_tabs">
       </div>
     </div>
@@ -60,15 +70,21 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <%= form_with(url: :site_add_assets, local: true, remote: true) do |form| %>
+        <%= form_with(url: :site_add_assets, local: true, remote: true, id: "asset-upload") do |form| %>
+          <%= form.hidden_field :site_id, value: @site.id %>
           <%= form.label :assets %>
-          <%= form.file_field :assets, multiple: true %>
+          <%= form.file_field :assets, multiple: true, name: "assets[attachment]" %>
           </div>
           <!-- Modal footer -->
-          <div class="modal-footer">
-            <%= form.submit %>
+          <div class="modal-body" id="asset-progress">
           </div>
         <% end %>
     </div>
   </div>
 </div>
+<script id="template-upload" type="text/x-tmpl">
+<div class="upload">
+  {%=o.name%}
+  <div class="progress"><div class="bar" style="width: 0%"></div></div>
+</div>
+</script>
