@@ -16,7 +16,7 @@
                 <li><a href="#">Javascripts</a>
                   <ul>
                     <% assets.select { |a| a.kind == "js" } .each do |asset| %>
-                      <li class="edit-asset" id="<%= asset.id %>">
+                      <li class="edit-asset" id="<%= asset.id %>" data-kind="assets">
                         <i class="fab fa-js orange-icon"> </i>
                         <%= asset.name %>
                       </li>
@@ -27,7 +27,7 @@
                 <li><a href="#">Stylesheets</a>
                   <ul>
                     <% assets.select { |a| a.kind == "css" } .each do |asset| %>
-                      <li class="edit-asset" id="<%= asset.id %>">
+                      <li class="edit-asset" id="<%= asset.id %>" data-kind="assets">
                         <i class="fab fa-js pink-icon"> </i>
                         <%= asset.name %>
                       </li>
@@ -38,7 +38,7 @@
                 <li><a href="#">Images</a>
                   <ul>
                     <% assets.select { |a| a.kind == "image" } .each do |asset| %>
-                      <li class="edit-asset" id="<%= asset.id %>">
+                      <li class="edit-asset" id="<%= asset.id %>" data-kind="assets">
                         <i class="fab fa-js pink-icon"> </i>
                         <%= asset.name %>
                       </li>
