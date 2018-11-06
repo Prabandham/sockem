@@ -21,9 +21,10 @@ gem 'font-awesome-sass', '~> 5.4.1'
 gem 'codemirror-rails'
 gem 'liquid'
 gem "loofah", ">= 2.2.3"
-
 gem 'carrierwave'
 gem 'jquery-fileupload-rails'
+gem 'devise'
+
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

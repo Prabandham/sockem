@@ -1,5 +1,7 @@
 module Cms
   class SitesController < ApplicationController
+    before_action :authenticate_user!
+
     before_action :set_site, only: [:show, :edit, :edit_cms, :update, :destroy, :add_assets]
 
     # GET /sites

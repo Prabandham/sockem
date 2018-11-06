@@ -1,5 +1,7 @@
 module Cms
   class LayoutsController < ApplicationController
+    before_action :authenticate_user!
+
     before_action :set_layout, only: [:show, :edit, :update, :destroy]
 
     # GET /layouts
