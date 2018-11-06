@@ -61,6 +61,10 @@ body {
   cursor: pointer;
 }
 
+.nav-tabs > li > a.active {
+  color: white;
+}
+
 .edit-asset {
   cursor: pointer;
 }
