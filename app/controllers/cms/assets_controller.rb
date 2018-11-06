@@ -1,6 +1,6 @@
 module Cms
   class AssetsController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_admin!
 
     before_action :set_asset, only: [:show, :edit, :update, :destroy]
 
@@ -14,7 +14,8 @@ module Cms
     # GET /assets/1.json
     def show
       respond_to do |format|
-        format.json { render json: @asset }
+        format.html { redirect_to site_edit_cms_path(@asset.site) }
+        format.js { render :show, status: 200 }
       end
     end
 
@@ -49,10 +50,10 @@ module Cms
       respond_to do |format|
         if @asset.update(asset_params)
           format.html { redirect_to @asset, notice: 'Asset was successfully updated.' }
-          format.json { render :show, status: :ok, location: @asset }
+          format.js { render :show, status: :ok, location: @asset }
         else
           format.html { render :edit }
-          format.json { render json: @asset.errors, status: :unprocessable_entity }
+          format.js { render json: @asset.errors, status: :unprocessable_entity }
         end
       end
     end
@@ -75,7 +76,7 @@ module Cms
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def asset_params
-      params.require(:asset).permit(:name, :priority, :attachment, :site_id)
+    params.require(:asset).permit(:priority)
     end
   end
 end

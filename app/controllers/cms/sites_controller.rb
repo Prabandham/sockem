@@ -1,6 +1,6 @@
 module Cms
   class SitesController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_admin!
 
     before_action :set_site, only: [:show, :edit, :edit_cms, :update, :destroy, :add_assets]
 
@@ -28,7 +28,7 @@ module Cms
       @data = {
           site_name: @site.name,
           pages: @site.pages,
-          assets: @site.assets.order(priority: :desc),
+          assets: @site.assets.order(priority: :asc),
           layouts: @site.layouts
       }
     end

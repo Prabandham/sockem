@@ -16,9 +16,9 @@
                 <li><a href="#">Javascripts</a>
                   <ul>
                     <% assets.select { |a| a.kind == "js" } .each do |asset| %>
-                      <li class="edit-asset" id="<%= asset.id %>" data-kind="assets">
+                      <li class="edit-asset" id="<%= asset.id %>" data-kind="assets" data-toggle= "modal" data-target= "#AssetEditModal">
                         <i class="fab fa-js orange-icon"> </i>
-                        <%= asset.name %>
+                        <%= link_to asset.name, asset_path(asset), remote: true %>
                       </li>
                     <% end %>
                   </ul>
@@ -27,9 +27,9 @@
                 <li><a href="#">Stylesheets</a>
                   <ul>
                     <% assets.select { |a| a.kind == "css" } .each do |asset| %>
-                      <li class="edit-asset" id="<%= asset.id %>" data-kind="assets">
+                      <li class="edit-asset" id="<%= asset.id %>" data-kind="assets" data-toggle= "modal" data-target= "#AssetEditModal">
                         <i class="fab fa-js pink-icon"> </i>
-                        <%= asset.name %>
+                        <%= link_to asset.name, asset_path(asset), remote: true %>
                       </li>
                     <% end %>
                   </ul>
@@ -38,9 +38,9 @@
                 <li><a href="#">Images</a>
                   <ul>
                     <% assets.select { |a| a.kind == "image" } .each do |asset| %>
-                      <li class="edit-asset" id="<%= asset.id %>" data-kind="assets">
+                      <li class="edit-asset" id="<%= asset.id %>" data-kind="assets" data-toggle= "modal" data-target= "#AssetEditModal">
                         <i class="fab fa-js pink-icon"> </i>
-                        <%= asset.name %>
+                        <%= link_to asset.name, asset_path(asset), remote: true %>
                       </li>
                     <% end %>
                   </ul>
@@ -77,30 +77,43 @@
   </div>
 </div>
 
-<!-- The Modal -->
 <div class="modal fade" id="AssetFormModal">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <!-- Modal Header -->
       <div class="modal-header">
         <h4 class="modal-title">Upload Assets</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
-      <!-- Modal body -->
       <div class="modal-body">
         <%= form_with(url: :site_add_assets, local: true, remote: true, id: "asset-upload") do |form| %>
           <%= form.hidden_field :site_id, value: @site.id %>
           <%= form.label :assets %>
           <%= form.file_field :assets, multiple: true, name: "assets[attachment]" %>
           </div>
-          <!-- Modal footer -->
           <div class="modal-body" id="asset-progress">
           </div>
         <% end %>
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="AssetEditModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="asset-name"></h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class="modal-body" id="edit-modal-body">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 <script id="template-upload" type="text/x-tmpl">
 <div class="upload">
   {%=o.name%}

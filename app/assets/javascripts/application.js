@@ -67,9 +67,9 @@ $(function() {
         e.preventDefault();
     });
 
-    $(".edit-asset").on("click", function(e) {
-        alert("Show modal for setting priority and deleting asset");
-    });
+    // $(".edit-asset").on("click", function(e) {
+    //     e.preventDefault();
+    // });
 
     $("#asset-upload").fileupload({
         dataType: "script",

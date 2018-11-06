@@ -29,6 +29,6 @@ class Asset < ApplicationRecord
   private
 
   def set_name
-    self.name = attachment.filename
+    self.name = attachment.filename if self.name.blank?
   end
 end
