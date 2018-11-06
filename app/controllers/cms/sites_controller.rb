@@ -26,7 +26,7 @@ module Cms
       @data = {
           site_name: @site.name,
           pages: @site.pages,
-          assets: @site.assets,
+          assets: @site.assets.order(priority: :desc),
           layouts: @site.layouts
       }
     end
@@ -62,8 +62,8 @@ module Cms
     end
 
     def add_assets
-      binding.pry
-      @site.assets.attach(params[:assets])
+      @asset = @site.assets.new(asset_params)
+      @asset.save
     end
 
     # DELETE /sites/1
@@ -84,7 +84,11 @@ module Cms
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def site_params
-      params.require(:site).permit(:name, :domain, :description, :google_analytics_key, :meta, assets: [])
+      params.require(:site).permit(:name, :domain, :description, :google_analytics_key, :meta, assets: [:attachment])
+    end
+
+    def asset_params
+      params.require(:assets).permit!
     end
   end
 end

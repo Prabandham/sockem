@@ -11,6 +11,9 @@ module Cms
     # GET /assets/1
     # GET /assets/1.json
     def show
+      respond_to do |format|
+        format.json { render json: @asset }
+      end
     end
 
     # GET /assets/new

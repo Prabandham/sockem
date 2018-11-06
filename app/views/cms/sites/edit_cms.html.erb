@@ -6,16 +6,45 @@
 <div class="cms-editor-grid" id="cms-editor-grid">
   <p id="current-site-id" class="d-none"><%= @site.id %></p>
   <div class="row">
-    <div class="col-2" id="explorer">
+    <div class="col-3" id="explorer">
       <ul id="tree">
         <li><a href="#" id="site_name"><%= site_name %></a>
           <ul>
             <li><a href="#">Assets</a>
               <ul>
-                <li><%= link_to("New Asset", new_asset_path, id: "new-asset") %></li>
-                <% assets.each do |asset| %>
-                  <li><%= asset.name %></li>
-                <% end %>
+                <li><a href="#" data-toggle= "modal" data-target= "#AssetFormModal">Add Assets</a></li>
+                <li><a href="#">Javascripts</a>
+                  <ul>
+                    <% assets.select { |a| a.kind == "js" } .each do |asset| %>
+                      <li class="edit-asset" id="<%= asset.id %>" data-kind="assets">
+                        <i class="fab fa-js orange-icon"> </i>
+                        <%= asset.name %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </li>
+
+                <li><a href="#">Stylesheets</a>
+                  <ul>
+                    <% assets.select { |a| a.kind == "css" } .each do |asset| %>
+                      <li class="edit-asset" id="<%= asset.id %>" data-kind="assets">
+                        <i class="fab fa-js pink-icon"> </i>
+                        <%= asset.name %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </li>
+
+                <li><a href="#">Images</a>
+                  <ul>
+                    <% assets.select { |a| a.kind == "image" } .each do |asset| %>
+                      <li class="edit-asset" id="<%= asset.id %>" data-kind="assets">
+                        <i class="fab fa-js pink-icon"> </i>
+                        <%= asset.name %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </li>
               </ul>
             </li>
 
@@ -41,9 +70,40 @@
       </ul>
     </div>
 
-    <div class="col-10" id="preview_content">
+    <div class="col-9" id="preview_content">
       <div id="editor_tabs">
       </div>
     </div>
   </div>
 </div>
+
+<!-- The Modal -->
+<div class="modal fade" id="AssetFormModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Upload Assets</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <%= form_with(url: :site_add_assets, local: true, remote: true, id: "asset-upload") do |form| %>
+          <%= form.hidden_field :site_id, value: @site.id %>
+          <%= form.label :assets %>
+          <%= form.file_field :assets, multiple: true, name: "assets[attachment]" %>
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-body" id="asset-progress">
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>
+<script id="template-upload" type="text/x-tmpl">
+<div class="upload">
+  {%=o.name%}
+  <div class="progress"><div class="bar" style="width: 0%"></div></div>
+</div>
+</script>

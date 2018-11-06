@@ -5,6 +5,7 @@ class CreatePages < ActiveRecord::Migration[5.2]
       t.string :path, unique: true
       t.text :content
       t.belongs_to :site, foreign_key: true
+      t.belongs_to :layout, foreign_key: true
 
       t.timestamps
     end

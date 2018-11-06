@@ -22,6 +22,8 @@ gem 'codemirror-rails'
 gem 'liquid'
 gem "loofah", ">= 2.2.3"
 
+gem 'carrierwave'
+gem 'jquery-fileupload-rails'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

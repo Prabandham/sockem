@@ -26,6 +26,8 @@
 //= require vendor/tree
 //= require vendor/resize-bs-grid
 //= require vendor/bootstrap-dynamic-tabs
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
 //= require_tree .
 
 jQuery.each( [ "put", "delete" ], function( i, method ) {
@@ -48,7 +50,7 @@ jQuery.each( [ "put", "delete" ], function( i, method ) {
 
 $(function() {
     window.openEditors = 0;
-    $("#explorer").resizable();
+    $(".cms-editor-grid").resizableGrid();
     window.tabs = $("#editor_tabs").bootstrapDynamicTabs();
     $('#tree').treed({openedClass : 'fas fa-folder-open', closedClass : 'fas fa-folder'});
     $('#tree').height(window.outerHeight);
@@ -63,7 +65,41 @@ $(function() {
 
     $("#new-asset").on('click', function(e) {
         e.preventDefault();
-        alert("TODO Show modal for asset selection");
+    });
+
+    $(".edit-asset").on("click", function(e) {
+        alert("Show modal for setting priority and deleting asset");
+    });
+
+    $("#asset-upload").fileupload({
+        dataType: "script",
+        add: function(e, data) {
+            var file, types;
+            types = /(\.|\/)(gif|jpe?g|png|css|js|map)$/i;
+            file = data.files[0];
+            if (types.test(file.type) || types.test(file.name)) {
+                data.context = $(tmpl("template-upload", file));
+                $('#asset-progress').append(data.context);
+                return data.submit();
+            } else {
+                return alert(file.name + " is not a gif, jpeg, png, css, js or map file");
+            }
+        },
+        progress: function(e, data) {
+            var progress;
+            if (data.context) {
+                progress = parseInt(data.loaded / data.total * 100, 10);
+                return data.context.find('.bar').css('width', progress + '%');
+            }
+        },
+        done: function (e, data) {
+            window.location.reload();
+        },
+        fail: function(e, data) {
+            alert("Something went worng in the upload");
+            window.location.reload();
+        }
+
     });
 
     $("#new-layout").on('click', function(e) {
@@ -86,7 +122,7 @@ $(function() {
             site_id: $("#current-site-id").html()
         };
         $.post("/cms/layouts", { layout: data }, function(result) {
-            SetEditor(result);
+            SetEditor(result, "layouts");
         });
     });
 
@@ -96,7 +132,7 @@ $(function() {
             site_id: $("#current-site-id").html()
         };
         $.post("/cms/pages", { page: data }, function(result) {
-            SetEditor(result);
+            SetEditor(result, "pages");
         });
     });
 
@@ -127,11 +163,10 @@ $(function() {
         editor.setSize(width + 29, height - 29);
         editor.setValue(content);
         editor.on('change', editor => {
-            // TODO set not saved * on the tab.
             var textArea = $(editor.getTextArea());
             var id = textArea.attr("id").split("_")[1];
             var name = textArea.attr("attr-name");
-            var tabId = "tab_" + id;
+            var tabId = "tab_" + id + "_" + kind;
             var query = "a[href$=" + tabId + "]";
             var content = "<button class=\"close\" type=\"button\">x</button>\n" +
                 name + "<span class='text-danger'>*</span>";
@@ -148,10 +183,10 @@ $(function() {
 
     function constructTab(name, id, kind) {
         var friendlyID = "code_" + id + "_" + kind;
-        var tabID = "tab_" + id;
+        var tabID = "tab_" + id + "_" + kind;
         var body = "<textarea id=" + friendlyID + " \"class=d-none\" attr-name=" + name + "></textarea>\n";
 
-        tabs.addTab({
+        window.tabs.addTab({
             title: name,
             html: body,
             closable: true,
