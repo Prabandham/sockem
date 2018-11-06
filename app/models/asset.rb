@@ -17,6 +17,15 @@ class Asset < ApplicationRecord
       "others"
     end
   end
+
+  def process
+    if kind == 'css'
+      "<link rel='stylesheet' type='text/css' href='#{attachment.url}'>"
+    elsif kind == 'js'
+      "<script type='text/javascript' src='#{attachment.url}'></script>"
+    end
+  end
+
   private
 
   def set_name

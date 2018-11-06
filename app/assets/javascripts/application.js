@@ -97,7 +97,7 @@ $(function() {
         },
         fail: function(e, data) {
             alert("Something went worng in the upload");
-            window.reload;
+            window.location.reload();
         }
 
     });
@@ -166,7 +166,7 @@ $(function() {
             var textArea = $(editor.getTextArea());
             var id = textArea.attr("id").split("_")[1];
             var name = textArea.attr("attr-name");
-            var tabId = "tab_" + id;
+            var tabId = "tab_" + id + "_" + kind;
             var query = "a[href$=" + tabId + "]";
             var content = "<button class=\"close\" type=\"button\">x</button>\n" +
                 name + "<span class='text-danger'>*</span>";
