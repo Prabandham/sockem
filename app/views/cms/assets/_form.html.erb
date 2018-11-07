@@ -1,10 +1,16 @@
+<button class="clipboard-btn btn btn-small" data-clipboard-text="<%= asset.attachment.url %>">
+  <i class="fas fa-copy"></i>
+</button>
+
+<hr />
+
 <%= form_with(model: asset, local: true) do |form| %>
-  <div class="field">
+  <div class="form-group">
     <%= form.label :priority %>
     <%= form.text_field :priority, value: asset.priority %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>

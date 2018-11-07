@@ -24,6 +24,7 @@ gem "loofah", ">= 2.2.3"
 gem 'carrierwave'
 gem 'jquery-fileupload-rails'
 gem 'devise'
+gem 'clipboard-rails'
 
 
 # Use CoffeeScript for .coffee assets and views

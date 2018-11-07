@@ -12,6 +12,14 @@
   <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
       <a class="navbar-brand" href="#">ExCms</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <div class="navbar-text float-right">
+            <%= link_to('Logout', destroy_admin_session_path, method: :delete) %>
+        </div>
+      </div>
     </nav>
     <div class="container-fluid" id="app">
       <!-- <p class="notice"><%= notice %></p> -->
