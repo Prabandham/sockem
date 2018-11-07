@@ -24,6 +24,7 @@ gem "loofah", ">= 2.2.3"
 gem 'carrierwave'
 gem 'jquery-fileupload-rails'
 gem 'devise'
+gem 'clipboard-rails'
 
 
 # Use CoffeeScript for .coffee assets and views
@@ -71,3 +72,8 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+
+
+
+# TEst commit

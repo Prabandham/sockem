@@ -28,6 +28,7 @@
 //= require vendor/bootstrap-dynamic-tabs
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
+//= require clipboard
 //= require_tree .
 
 jQuery.each( [ "put", "delete" ], function( i, method ) {
@@ -52,6 +53,32 @@ $(function() {
     window.openEditors = 0;
     $(".cms-editor-grid").resizableGrid();
     window.tabs = $("#editor_tabs").bootstrapDynamicTabs();
+    $('.clipboard-btn').tooltip({
+        trigger: 'click',
+        placement: 'bottom'
+    });
+    function setTooltip(btn, message) {
+        $(btn).tooltip('show')
+            .attr('data-original-title', message)
+            .tooltip('show');
+    }
+
+    function hideTooltip(btn) {
+        setTimeout(function() {
+            $(btn).tooltip('hide');
+        }, 1000);
+    }
+    var clipboard = new Clipboard('.clipboard-btn');
+    clipboard.on('success', function(e) {
+        setTooltip(e.trigger, 'Copied!');
+        hideTooltip(e.trigger);
+    });
+
+    clipboard.on('error', function(e) {
+        setTooltip(e.trigger, 'Failed!');
+        hideTooltip(e.trigger);
+    });
+
     $('#tree').treed({openedClass : 'fas fa-folder-open', closedClass : 'fas fa-folder'});
     $('#tree').height(window.outerHeight);
     $("#preview_content").height(window.outerHeight);
@@ -177,8 +204,16 @@ $(function() {
     }
 
     $("body").on("click", ".close", function() {
-        var element = $($(this).parent()[0]).attr("href").split("#")[1];
-        tabs.closeById(element);
+        var element;
+        try {
+            element = $($(this).parent()[0]).attr("href").split("#")[1];
+        }
+        catch(err) {
+            element = null;
+        }
+        if(element != null) {
+            tabs.closeById(element);
+        }
     });
 
     function constructTab(name, id, kind) {
