@@ -12,7 +12,10 @@
   <body class="bg-dark">
     <% if admin_signed_in? %>
       <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-        <a class="navbar-brand" href="/cms/sites" data-turbolinks=false>ExCMS</a>
+        <a class="navbar-brand d-flex pl-3" href="/cms/sites" data-turbolinks=false>
+          <%= image_tag('cms_logo.png', class: 'img-fluid mx-auto d-block',style: "height:30px;")%>          
+          <h6 class="pt-1 pl-2">CMS</h6>
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
