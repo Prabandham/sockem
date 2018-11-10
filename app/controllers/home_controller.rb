@@ -20,9 +20,6 @@ class HomeController < ApplicationController
   private
 
   def set_site
-    RAILS.logger.debug "---------------------"
-    RAILS.logger.debug "DOMAIN - #{request.domain}"
-    RAILS.logger.debug "---------------------"
     @site = Site.find_by(domain: request.domain)
   end
 
