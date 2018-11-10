@@ -48,9 +48,9 @@ git fetch && git reset --hard origin/master
 
 bundle
 
-rake db:migrate
+rails db:migrate
 
-bundle exec rake assets:precompile
+rake assets:precompile
 
-bundle exec rails s
+rails restart
 
