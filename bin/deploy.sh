@@ -40,7 +40,7 @@ echo -e "${BGreen}Deploy started ....${NC}"
 echo -e "${BRed}__________________________${NC}"
 echo -e "${BCyan}Deploying reversion - ${NC} `git log -1 --pretty=format:"%h"`"
 
-ssh deployer@51.15.245.243
+ssh deploy@51.15.245.243
 
 cd apps/sockem
 
