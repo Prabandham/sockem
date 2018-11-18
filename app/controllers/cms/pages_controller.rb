@@ -85,7 +85,7 @@ module Cms
     def update_layout
       layout_string = page_params[:content].match(/<!--(.*?)-->/).to_a.first
       layout_name = layout_string.gsub("<!--", "").gsub("-->", "").squish.split("=").last + ".html" if layout_string
-      layout = Layout.find_by(name: layout_name)
+      layout = Layout.find_by(name: layout_name, site_id: @page.site_id)
       @page.layout_id = layout.id if layout
       @page.save
     end

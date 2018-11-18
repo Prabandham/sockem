@@ -20,7 +20,7 @@ class HomeController < ApplicationController
   private
 
   def set_site
-    @site = Site.find_by(domain: request.base_url )
+    @site = Site.find_by(domain: request.base_url)
   end
 
   def set_page
