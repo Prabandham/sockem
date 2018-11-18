@@ -102,7 +102,7 @@ $(function() {
         dataType: "script",
         add: function(e, data) {
             var file, types;
-            types = /(\.|\/)(gif|jpe?g|png|css|js|map)$/i;
+            types = /(\.|\/)(gif|jpe?g|png|svg|css|js|map)$/i;
             file = data.files[0];
             if (types.test(file.type) || types.test(file.name)) {
                 data.context = $(tmpl("template-upload", file));

@@ -1,7 +1,8 @@
 <button class="clipboard-btn btn btn-small" data-clipboard-text="<%= asset.attachment.url %>">
   <i class="fas fa-copy"></i>
+  <small>(Copy)</small>
 </button>
-
+<%= link_to 'Destroy', asset, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger float-right" %>
 <hr />
 
 <%= form_with(model: asset, local: true) do |form| %>

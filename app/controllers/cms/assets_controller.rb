@@ -63,7 +63,7 @@ module Cms
     def destroy
       @asset.destroy
       respond_to do |format|
-        format.html { redirect_to assets_url, notice: 'Asset was successfully destroyed.' }
+        format.html { redirect_to request.referer, notice: 'Asset was successfully destroyed.' }
         format.json { head :no_content }
       end
     end
