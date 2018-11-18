@@ -6,8 +6,8 @@ class HomeController < ApplicationController
   def index
     render :no_site and return unless @site && @page && @page.layout
     template = Liquid::Template.parse(@page.layout.content)
-    style_sheets = @site.assets.order(priority: :asc).select { |a| a.kind == "css" }.map(&:process)
-    javascripts = @site.assets.order(priority: :asc).select { |a| a.kind == "js" }.map(&:process)
+    style_sheets = @site.assets.select { |a| a.kind == "css" }.sort { |a,b| a.priority.to_i <=> b.priority.to_i }.reverse.map(&:process)
+    javascripts = @site.assets.select { |a| a.kind == "js" }.sort { |a,b| a.priority.to_i <=> b.priority.to_i }.reverse.map(&:process)
     @parsed_template = template.render(
         {
             'page' => @page.content,
@@ -20,7 +20,7 @@ class HomeController < ApplicationController
   private
 
   def set_site
-    @site = Site.find_by(domain: request.domain)
+    @site = Site.find_by(domain: request.base_url )
   end
 
   def set_page

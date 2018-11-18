@@ -28,7 +28,7 @@ module Cms
       @data = {
           site_name: @site.name,
           pages: @site.pages,
-          assets: @site.assets.order(priority: :asc),
+          assets: @site.assets.sort { |a,b| a.priority.to_i <=> b.priority.to_i }.reverse,
           layouts: @site.layouts
       }
     end
