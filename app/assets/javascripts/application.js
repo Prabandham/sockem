@@ -262,16 +262,19 @@ $(function() {
     // Set json editor for meta field in sites form
     var meta_element = document.getElementById("site_meta_holder");
     if (meta_element !== null) {
-        var schema = $("#site_meta").val();
+        var schema = JSON.parse($("#site_meta").val());
+        console.log(schema);
         var editor = new JSONEditor(meta_element, {
             ajax: false,
             theme: 'bootstrap4',
-            schema: schema,
+            schema: {}
         });
 
+        editor.setValue(schema);
+
         editor.on('change',function() {
-            console.log(editor.getValue());
-            $("#site_meta").val(editor.getValue());
+            var value = editor.getValue();
+            $("#site_meta").val(JSON.stringify(value));
         });
     }
 });
