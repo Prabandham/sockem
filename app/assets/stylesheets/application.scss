@@ -131,3 +131,8 @@ body {
 .resizable-grid>.resizable-row-resizing>.resizable-column:not(.resizable-column-resizing) {
     opacity: 0.5;
 }
+
+#error_explanation {
+  background: #c52424;
+  color: white;
+}

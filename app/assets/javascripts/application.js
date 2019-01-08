@@ -26,6 +26,7 @@
 //= require vendor/tree
 //= require vendor/resize-bs-grid
 //= require vendor/bootstrap-dynamic-tabs
+//= require vendor/jsoneditor.min
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
 //= require clipboard
@@ -256,5 +257,21 @@ $(function() {
                 });
             });
         }
+    }
+
+    // Set json editor for meta field in sites form
+    var meta_element = document.getElementById("site_meta_holder");
+    if (meta_element !== null) {
+        var schema = $("#site_meta").val();
+        var editor = new JSONEditor(meta_element, {
+            ajax: false,
+            theme: 'bootstrap4',
+            schema: schema,
+        });
+
+        editor.on('change',function() {
+            console.log(editor.getValue());
+            $("#site_meta").val(editor.getValue());
+        });
     }
 });

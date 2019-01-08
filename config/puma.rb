@@ -9,8 +9,8 @@ threads threads_count, threads_count
 
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 #
-# port        ENV.fetch("PORT") { 3000 }
-bind 'unix:///tmp/run/puma.sock'
+port        ENV.fetch("PORT") { 3000 } if ENV.fetch("RAILS_ENV") == "development"
+bind 'unix:///tmp/run/puma.sock' if ENV.fetch("RAILS_ENV") == "production"
 
 # Specifies the `environment` that Puma will run in.
 #
@@ -30,7 +30,7 @@ workers ENV.fetch("WEB_CONCURRENCY") { 5 }
 # process behavior so workers use less memory.
 #
 # preload_app!
-daemonize true
+daemonize true if ENV.fetch("RAILS_ENV") == "production"
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
