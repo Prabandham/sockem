@@ -37,6 +37,18 @@
     <div id="site_meta_holder"></div>
   </div>
 
+  <% if @site && @site.new_record? %>
+    <div class="form-group">
+      <%= form.label :initialize_with, class: "text-white" %>
+      <%= form.select(
+        :install_prebuilt,
+        ['bootstrap-4', 'bootstrap-5', 'material-ui-bootstrap'],
+        {},
+        { class: "form-control" })
+      %>
+    </div>
+  <% end %>
+
   <div class="form-group">
     <%= form.submit "Submit", class: "btn btn-success" %>
   </div>
