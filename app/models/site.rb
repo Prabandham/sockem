@@ -8,37 +8,47 @@ class Site < ApplicationRecord
   attribute :initialize_with, :string
 
   def link_assets_from(framework)
-    Rails.logger.debug "Site #{name} wants to be initialized with #{framework}"
-    framework_files = Dir.entries(File.join('public', framework.downcase)).reject { |f| f.starts_with?('.') } 
+    framework_files = Dir.entries(File.join('public', framework.downcase)).reject { |f| f.starts_with?('.') }
 
     framework_files.each do |file_path|
       full_path = File.join('public', framework.downcase, file_path)
       next unless File.exist?(full_path)
 
-      asset = Asset.new
-      asset.attachment = File.open(full_path)
-      asset.site_id = id
-      asset.save!
+      create_asset(full_path)
     end
-    
-    if assets.count >= 1
-      layout = Layout.new
-      layout.name = 'home.html'
-      layout.site_id = id
-      layout.content = layout_template
-      layout.save!
 
-      page = Page.new
-      page.site_id = id
-      page.content = landing_page_template
-      page.layout_id = layout.id
-      page.name = 'index.html'
-      page.save!
+    if assets.count >= 1
+      layout = create_default_layout
+      create_default_page(layout)
     end
-  
   end
 
   private
+
+  def create_default_page(layout)
+    page = Page.new
+    page.site_id = id
+    page.content = landing_page_template
+    page.layout_id = layout.id
+    page.name = 'index.html'
+    page.save!
+  end
+
+  def create_default_layout
+    layout = Layout.new
+    layout.name = 'home.html'
+    layout.site_id = id
+    layout.content = layout_template
+    layout.save!
+    layout
+  end
+
+  def create_asset(full_path)
+    asset = Asset.new
+    asset.attachment = File.open(full_path)
+    asset.site_id = id
+    asset.save!
+  end
 
   def landing_page_template
     <<~HTML
@@ -66,34 +76,40 @@ class Site < ApplicationRecord
             {{ include_javascripts }}
           </head>
           <body class='bg-light'>
-            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-              <a class="navbar-brand" href="#">#{name}</a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                  </li>
-                </ul>
-                <form class="form-inline mt-2 mt-md-0">
-                  <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-              </div>
-            </nav>
+            #{nav_bar}
             <main role="main" class="container">
               {{ page }}
             </main>
           </body>
         </html>
+    HTML
+  end
+
+  def nav_bar
+    <<~HTML
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">#{name}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+          </ul>
+          <form class="form-inline mt-2 mt-md-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
     HTML
   end
 end
