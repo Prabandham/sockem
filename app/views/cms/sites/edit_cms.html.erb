@@ -12,9 +12,10 @@
           <ul>
             <li><a href="#">Assets</a>
               <ul>
-                <li><a href="#" data-toggle= "modal" data-target= "#AssetFormModal">Add Assets</a></li>
+                <li><a href="#" data-toggle= "modal" data-target= "#AssetFormModal">Bulk Upload Assets</a></li>
                 <li><a href="#">Javascripts</a>
                   <ul>
+                    <li><%= link_to("New Javascript", new_layout_path, id: "new-js") %></li>
                     <% assets.select { |a| a.kind == "js" } .each do |asset| %>
                       <li class="edit-asset" id="<%= asset.id %>" data-kind="assets" data-toggle= "modal" data-target= "#AssetEditModal">
                         <i class="fab fa-js orange-icon"> </i>
@@ -26,9 +27,10 @@
 
                 <li><a href="#">Stylesheets</a>
                   <ul>
+                    <li><%= link_to("New CSS", new_layout_path, id: "new-css") %></li>
                     <% assets.select { |a| a.kind == "css" } .each do |asset| %>
                       <li class="edit-asset" id="<%= asset.id %>" data-kind="assets" data-toggle= "modal" data-target= "#AssetEditModal">
-                        <i class="fab fa-js pink-icon"> </i>
+                        <i class="fab fa-css3 pink-icon"> </i>
                         <%= link_to asset.name, asset_path(asset), remote: true %>
                       </li>
                     <% end %>
