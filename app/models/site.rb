@@ -1,4 +1,5 @@
 class Site < ApplicationRecord
+  has_paper_trail
   has_many :layouts, dependent: :destroy
   has_many :pages,   dependent: :destroy
   has_many :assets,  dependent: :destroy

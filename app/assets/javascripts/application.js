@@ -87,11 +87,21 @@ $(function() {
     $("#site_name").prev().addClass("purple-icon");
     $("#site_name").click();
 
-    window.setInterval(function(){
-        saveAllEditors();
-    }, 10000);
+    // window.setInterval(function(){
+    //     saveAllEditors();
+    // }, 10000);
 
-    $("#new-asset").on('click', function(e) {
+  $(document).keydown(function(e) {
+    if ((e.key == 's' || e.key == 'S' ) && (e.ctrlKey || e.metaKey))
+    {
+      e.preventDefault();
+      saveAllEditors();
+      return false;
+    }
+    return true;
+  });
+
+  $("#new-asset").on('click', function(e) {
         e.preventDefault();
     });
 
