@@ -31,7 +31,7 @@ module Cms
     # POST /layouts.json
     def create
       @layout = Layout.find_or_initialize_by(
-          name: layout_params[:name],
+          name: layout_params[:name].strip,
           site_id: layout_params[:site_id]
       )
 
