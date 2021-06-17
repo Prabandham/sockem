@@ -61,8 +61,11 @@ It may not immediately show a rails console, but start typing and it should appe
 
 
 * Database creation
+```sh
 docker-compose up
+
 docker-compose run app rake db:create db:migrate
+```
 
 * Access app shell
 docker-compose exec web bash
