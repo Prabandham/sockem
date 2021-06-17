@@ -198,6 +198,42 @@ $(function() {
         });
     });
 
+  (function(CodeMirror) {
+    "use strict";
+
+    CodeMirror.registerHelper("lint", "html", function(text) {
+      var found = [], message;
+      if (!window.HTMLHint) return found;
+      var messages = HTMLHint.verify(text, ruleSets);
+      for ( var i = 0; i < messages.length; i++) {
+        message = messages[i];
+        var startLine = message.line -1, endLine = message.line -1, startCol = message.col -1, endCol = message.col;
+        found.push({
+          from: CodeMirror.Pos(startLine, startCol),
+          to: CodeMirror.Pos(endLine, endCol),
+          message: message.message,
+          severity : message.type
+        });
+      }
+      return found;
+    });
+  });
+
+    // ruleSets for HTMLLint
+    let ruleSets = {
+      "tagname-lowercase": true,
+      "attr-lowercase": true,
+      "attr-value-double-quotes": true,
+      "doctype-first": true,
+      "tag-pair": true,
+      "spec-char-escape": true,
+      "id-unique": true,
+      "src-not-empty": true,
+      "attr-no-duplication": true
+    };
+
+    var delay;
+
     function SetEditor(result, kind) {
         var height = $("#preview_content").height();
         var width = $("#preview_content").width();
@@ -218,11 +254,12 @@ $(function() {
             foldGutter: true,
             gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter", "CodeMirror-lint-markers"],
             htmlMode: true,
-            extraKeys: {"Ctrl-Space": "autocomplete"},
             theme: "material",
             showTrailingSpace: true,
-            extraKeys: { "Shift-Tab": autoFormatSelection },
-
+            extraKeys: {
+              "Shift-Tab": autoFormatSelection,
+              "Ctrl-Space": "autocomplete"
+            },
         });
         function getSelectedRange() {
           return { from: editor.getCursor(true), to: editor.getCursor(false) };
