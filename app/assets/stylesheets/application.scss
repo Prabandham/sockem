@@ -18,6 +18,10 @@
 @import "vendor/tree";
 @import "codemirror";
 @import "codemirror/themes/material";
+@import "codemirror/addons/lint/lint";
+@import "codemirror/addons/hint/show-hint";
+@import "codemirror/addons/fold/foldgutter";
+
 body {
     font-size: 13px;
 }
@@ -135,4 +139,14 @@ body {
 #error_explanation {
   background: #c52424;
   color: white;
+}
+
+.cm-trailingspace {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAACCAYAAAB/qH1jAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QUXCToH00Y1UgAAACFJREFUCNdjPMDBUc/AwNDAAAFMTAwMDA0OP34wQgX/AQBYgwYEx4f9lQAAAABJRU5ErkJggg==);
+  background-position: bottom left;
+  background-repeat: repeat-x;
+}
+
+.CodeMirror-activeline-background {
+  background-color: #1b1e21;
 }
