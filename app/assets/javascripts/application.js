@@ -23,6 +23,21 @@
 //= require codemirror/addons/hint/html-hint
 //= require codemirror/modes/xml
 //= require codemirror/modes/htmlmixed
+//= require codemirror/addons/lint/lint
+//= require codemirror/addons/lint/html-lint
+//= require codemirror/addons/fold/foldcode
+//= require codemirror/addons/fold/foldgutter
+//= require codemirror/addons/fold/brace-fold
+//= require codemirror/addons/fold/xml-fold
+//= require codemirror/addons/fold/indent-fold
+//= require codemirror/addons/fold/markdown-fold
+//= require codemirror/addons/fold/comment-fold
+//= require codemirror/addons/edit/closetag
+//= require codemirror/addons/edit/matchbrackets
+//= require codemirror/addons/edit/matchtags
+//= require codemirror/addons/edit/trailingspace
+//= require codemirror/addons/selection/active-line
+//= require codemirror/addons/selection/mark-selection
 //= require vendor/tree
 //= require vendor/resize-bs-grid
 //= require vendor/bootstrap-dynamic-tabs
@@ -193,10 +208,19 @@ $(function() {
         }
         var editor = CodeMirror.fromTextArea(document.getElementById(id), {
             lineNumbers: true,
-            mode: "text/html",
+            mode: "text/html", //TODO change this to be dynamic when we allow editing of css and JS assets as well.
+            tabMode: "indent",
+            styleActiveLine: true,
+            lineWrapping: true,
+            autoCloseTags: true,
+            matchTags: { bothTags: true },
+            lint: true,
+            foldGutter: true,
+            gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter", "CodeMirror-lint-markers"],
             htmlMode: true,
             extraKeys: {"Ctrl-Space": "autocomplete"},
             theme: "material",
+            showTrailingSpace: true,
         });
         editor.setSize(width + 29, height - 29);
         editor.setValue(content);
