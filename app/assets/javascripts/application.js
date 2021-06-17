@@ -221,7 +221,17 @@ $(function() {
             extraKeys: {"Ctrl-Space": "autocomplete"},
             theme: "material",
             showTrailingSpace: true,
+            extraKeys: { "Shift-Tab": autoFormatSelection },
+
         });
+        function getSelectedRange() {
+          return { from: editor.getCursor(true), to: editor.getCursor(false) };
+        }
+
+        function autoFormatSelection() {
+          var range = getSelectedRange();
+          editor.autoFormatRange(range.from, range.to);
+        }
         editor.setSize(width + 29, height - 29);
         editor.setValue(content);
         editor.on('change', editor => {
