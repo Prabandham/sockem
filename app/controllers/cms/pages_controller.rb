@@ -31,7 +31,7 @@ module Cms
     # POST /pages.json
     def create
       @page = Page.find_or_initialize_by(
-          name: page_params[:name].strip,
+          name: page_params[:name].strip.gsub('<br>', ''),
           site_id: page_params[:site_id]
       )
 

@@ -54,7 +54,7 @@
               <ul id="layouts-ul">
                 <li><%= link_to("New Layout", new_layout_path, id: "new-layout") %></li>
                 <% layouts.each do |layout| %>
-                  <li class="edit-file" id="<%= layout.id %>" data-kind="layouts"><%= layout.name %></li>
+                  <li class="edit-file" id="<%= layout.id %>" data-kind="layouts"><%= layout.name.gsub('<br>', '') %></li>
                 <% end %>
               </ul>
             </li>
@@ -63,7 +63,7 @@
               <ul id="pages-ul">
                 <li><%= link_to("New Page", new_page_path, id: "new-page") %></li>
                 <% pages.each do |page| %>
-                  <li class="edit-file" id="<%= page.id %>" data-kind="pages"><%= page.name %></li>
+                  <li class="edit-file" id="<%= page.id %>" data-kind="pages"><%= page.name.gsub('<br>', '') %></li>
                 <% end %>
               </ul>
             </li>
@@ -113,8 +113,6 @@
     </div>
   </div>
 </div>
-
-
 
 <script id="template-upload" type="text/x-tmpl">
 <div class="upload">
