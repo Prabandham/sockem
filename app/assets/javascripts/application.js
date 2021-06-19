@@ -170,7 +170,21 @@ $(function() {
         $(element).insertAfter(ul);
     });
 
-    $("body").on('blur', '#new-layout-name', function() {
+    $("#new-js").on('click', function(e) {
+      e.preventDefault();
+      var element = $("<li contenteditable='true' id='new-asset-name'>New JS Name</li>");
+      var ul = $("#js-ul li:first");
+      $(element).insertAfter(ul);
+    });
+
+    $("#new-css").on('click', function(e) {
+      e.preventDefault();
+      var element = $("<li contenteditable='true' id='new-asset-name'>New CSS Name</li>");
+      var ul = $("#css-ul li:first");
+      $(element).insertAfter(ul);
+    });
+
+  $("body").on('blur', '#new-layout-name', function() {
         var data = {
             name: $(this).html(),
             site_id: $("#current-site-id").html()
@@ -190,10 +204,23 @@ $(function() {
         });
     });
 
-    $("body").on("click", ".edit-file", function() {
+    $("body").on("blur", "#new-asset-name", function() {
+      var data = {
+        name: $(this).html(),
+        site_id: $("#current-site-id").html()
+      };
+      $.post("/cms/custom-assets", { asset: data }, function(result) {
+        SetEditor(result, "assets");
+      });
+    });
+
+  $("body").on("click", ".edit-file", function() {
         var kind = $(this).attr("data-kind");
         var id = $(this).attr("id");
         var url = "/cms/" + kind + "/" + id;
+        if(kind === "assets") {
+          url = url + ".json"
+        }
         $.get(url, function(result) {
             SetEditor(result, kind);
         });
@@ -248,12 +275,24 @@ $(function() {
         var width = $("#preview_content").width();
         var id = constructTab(result.name, result.id, kind);
         var content = result.content;
-        if(content === null) {
+        if(content === null || content === undefined) {
             content = "";
         }
+        let mode_extension = result.name.split('.')[1];
+        let mode;
+        if (mode_extension === "js") {
+          mode = "text/javascript"
+        } else if (mode_extension === "css") {
+          mode = "text/css"
+        } else if (mode_extension === "html") {
+          mode = "text/html"
+        } else {
+          mode = "text/htmlmixed"
+        }
+        console.log(mode);
         var editor = CodeMirror.fromTextArea(document.getElementById(id), {
             lineNumbers: true,
-            mode: "text/html", //TODO change this to be dynamic when we allow editing of css and JS assets as well.
+            mode: mode,
             tabMode: "indent",
             styleActiveLine: true,
             lineWrapping: true,
@@ -335,12 +374,14 @@ $(function() {
                 var data;
                 var kind = textAreaId.split("_")[2];
                 var url = "/cms/" + kind + "/" + elmID;
-                if(kind == "pages") {
+                if(kind === "pages") {
                     data = { page: { content: $(regex).val() } };
-                } else {
+                } else if (kind === "layouts") {
                     data = { layout: { content: $(regex).val() } };
+                } else {
+                  data = { asset: { content: $(regex).val() } };
                 }
-                $.put(url, data, function(result) {
+              $.put(url, data, function(result) {
                     var tabId = contentId.split("#")[1];
                     var query = "a[href$=" + tabId + "]";
                     var content = "<button class=\"close\" type=\"button\">x</button>\n" +

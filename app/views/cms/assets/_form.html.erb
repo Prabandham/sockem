@@ -3,6 +3,7 @@
   <small>(Copy)</small>
 </button>
 <%= link_to 'Destroy', asset, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger float-right" %>
+<li class="edit-file" id="<%= asset.id %>" data-kind="assets"><%= asset.name.gsub('<br>', '') %></li>
 <hr />
 
 <%= form_with(model: asset, local: true) do |form| %>

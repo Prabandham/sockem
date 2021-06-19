@@ -14,7 +14,7 @@
               <ul>
                 <li><a href="#" data-toggle= "modal" data-target= "#AssetFormModal">Bulk Upload Assets</a></li>
                 <li><a href="#">Javascripts</a>
-                  <ul>
+                  <ul id="js-ul">
                     <li><%= link_to("New Javascript", new_layout_path, id: "new-js") %></li>
                     <% assets.select { |a| a.kind == "js" } .each do |asset| %>
                       <li class="edit-asset" id="<%= asset.id %>" data-kind="assets" data-toggle= "modal" data-target= "#AssetEditModal">
@@ -26,7 +26,7 @@
                 </li>
 
                 <li><a href="#">Stylesheets</a>
-                  <ul>
+                  <ul id="css-ul">
                     <li><%= link_to("New CSS", new_layout_path, id: "new-css") %></li>
                     <% assets.select { |a| a.kind == "css" } .each do |asset| %>
                       <li class="edit-asset" id="<%= asset.id %>" data-kind="assets" data-toggle= "modal" data-target= "#AssetEditModal">

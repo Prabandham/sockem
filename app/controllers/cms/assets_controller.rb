@@ -16,6 +16,7 @@ module Cms
       respond_to do |format|
         format.html { redirect_to site_edit_cms_path(@asset.site) }
         format.js { render :show, status: 200 }
+        format.json { render json: @asset }
       end
     end
 
@@ -25,8 +26,7 @@ module Cms
     end
 
     # GET /assets/1/edit
-    def edit
-    end
+    def edit; end
 
     # POST /assets
     # POST /assets.json
@@ -47,6 +47,17 @@ module Cms
     # PATCH/PUT /assets/1
     # PATCH/PUT /assets/1.json
     def update
+      binding.pry
+      if content_asset_params[:content].present?
+        file = Tempfile.new(SecureRandom.uuid)
+        file.write(content_asset_params[:content])
+        file.rewind
+        file.read
+        @asset.attachment = file
+        @asset.save
+        file.close
+        file.unlink
+      end
       respond_to do |format|
         if @asset.update(asset_params)
           format.html { redirect_to @asset, notice: 'Asset was successfully updated.' }
@@ -68,6 +79,22 @@ module Cms
       end
     end
 
+    def custom_asset
+      @asset = Asset.find_or_initialize_by(
+        {
+          name: custom_asset_params[:name].strip.gsub('<br>', ''),
+          site_id: custom_asset_params[:site_id]
+        }
+      )
+      respond_to do |format|
+        if @asset.update_attributes(custom_asset_params)
+          format.json { render json: @asset, status: :created }
+        else
+          format.json { render json: @asset.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_asset
@@ -76,7 +103,15 @@ module Cms
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def asset_params
-    params.require(:asset).permit(:priority)
+      params.require(:asset).permit(:priority)
+    end
+
+    def custom_asset_params
+      params.require(:asset).permit(:name, :site_id)
+    end
+
+    def content_asset_params
+      params.require(:asset).permit(:content)
     end
   end
 end
