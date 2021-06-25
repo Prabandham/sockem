@@ -376,7 +376,7 @@ $(function() {
         return friendlyID;
     }
 
-    $(document).on('ajax:success', '#asset-update', '#layout-update', '#page-update', event => {
+    $(document).on('ajax:success', '#asset-update', event => {
       const [response, status, xhr] = event.detail;
       $("#AssetEditModal").modal('toggle');
     });
