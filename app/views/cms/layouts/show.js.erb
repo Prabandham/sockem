@@ -1,0 +1,3 @@
+$("#asset-name").html("Edit <%= @layout.name %>");
+
+$("#edit-modal-body").html("<%= escape_javascript(render partial: "form", locals: { layout: @layout}) %>");

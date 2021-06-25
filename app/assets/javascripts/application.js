@@ -226,19 +226,18 @@ $(function() {
     });
 
   $("body").on("click", ".edit-file", function() {
-        var kind = $(this).attr("data-kind");
-        var id = $(this).attr("id");
-        var url = "/cms/" + kind + "/" + id;
-        if(kind === "assets") {
-          url = url + ".json"
-        }
+    var kind = $(this).attr("data-kind");
+    var id = $(this).attr("id");
+    var url = "/cms/" + kind + "/" + id + ".json";
+
     if ($('#AssetEditModal').is(':visible')) {
       $("#AssetEditModal").modal('toggle');
     };
+
     $.get(url, function(result) {
-            SetEditor(result, kind);
-        });
+      SetEditor(result, kind);
     });
+  });
 
     // CodeMirror HTMLHint Integration
     (function(mod) {
@@ -303,7 +302,6 @@ $(function() {
         } else {
           mode = "text/htmlmixed"
         }
-        console.log(mode);
         var editor = CodeMirror.fromTextArea(document.getElementById(id), {
             lineNumbers: true,
             mode: mode,
@@ -317,7 +315,7 @@ $(function() {
             foldGutter: true,
             gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter", "CodeMirror-lint-markers"],
             htmlMode: true,
-            theme: "monokai",
+            theme: "material",
             showTrailingSpace: true,
             extraKeys: {
               "Shift-Tab": autoFormatSelection,
@@ -378,12 +376,20 @@ $(function() {
         return friendlyID;
     }
 
-    $(document).on('ajax:success', '#asset-update', event => {
+    $(document).on('ajax:success', '#asset-update', '#layout-update', '#page-update', event => {
+      const [response, status, xhr] = event.detail;
+      $("#AssetEditModal").modal('toggle');
+    });
+    $(document).on('ajax:success', '#layout-update', event => {
+      const [response, status, xhr] = event.detail;
+      $("#AssetEditModal").modal('toggle');
+    });
+    $(document).on('ajax:success', '#page-update', event => {
       const [response, status, xhr] = event.detail;
       $("#AssetEditModal").modal('toggle');
     });
 
-    function saveAllEditors() {
+  function saveAllEditors() {
         if($(".nav-tabs > li > a").length > 0) {
             $.each($(".nav-tabs > li > a"), function(i,tab_id) {
                 var contentId = $(tab_id).attr("href");
@@ -417,7 +423,6 @@ $(function() {
     var meta_element = document.getElementById("site_meta_holder");
     if (meta_element !== null) {
         var schema = JSON.parse($("#site_meta").val());
-        console.log(schema);
         var editor = new JSONEditor(meta_element, {
             ajax: false,
             theme: 'bootstrap4',

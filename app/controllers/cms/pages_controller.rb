@@ -14,7 +14,8 @@ module Cms
     # GET /pages/1.json
     def show
       respond_to do |format|
-        format.json { render json: @page }
+        format.js { render :show, status: 200 }
+        format.json { render json: { name: @page.name, content: @page.content, id: @page.id } }
       end
     end
 
@@ -53,9 +54,11 @@ module Cms
     # they have to add the above layout tag. And it will read it and update
     def update
       respond_to do |format|
-        if update_layout && @page.update(page_params)
+        if @page.update(page_params)
+          format.html { render json: @page, status: :ok }
           format.json { render json: @page, status: :ok }
         else
+          format.html { render json: @page.errors, status: :unprocessable_entity }
           format.json { render json: @page.errors, status: :unprocessable_entity }
         end
       end
@@ -79,10 +82,12 @@ module Cms
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
-      params.require(:page).permit(:name, :path, :content, :site_id)
+      params.require(:page).permit(:name, :path, :content, :site_id, :layout_id)
     end
 
     def update_layout
+      return if page_params[:content].blank?
+
       layout_string = page_params[:content].match(/<!--(.*?)-->/).to_a.first
       layout_name = layout_string.gsub("<!--", "").gsub("-->", "").squish.split("=").last + ".html" if layout_string
       layout = Layout.find_by(name: layout_name, site_id: @page.site_id)

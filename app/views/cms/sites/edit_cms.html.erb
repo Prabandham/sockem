@@ -54,7 +54,10 @@
               <ul id="layouts-ul">
                 <li><%= link_to("New Layout", new_layout_path, id: "new-layout") %></li>
                 <% layouts.each do |layout| %>
-                  <li class="edit-file" id="<%= layout.id %>" data-kind="layouts"><%= layout.name.gsub('<br>', '') %></li>
+                  <li class="edit-asset" id="<%= layout.id %>" data-kind="layouts" data-toggle= "modal" data-target= "#AssetEditModal">
+                    <i class="fab fa-html5 white-icon"> </i>
+                    <%= link_to layout.name.gsub('<br>', ''), layout_path(layout), remote: true %>
+                  </li>
                 <% end %>
               </ul>
             </li>
@@ -63,8 +66,17 @@
               <ul id="pages-ul">
                 <li><%= link_to("New Page", new_page_path, id: "new-page") %></li>
                 <% pages.each do |page| %>
-                  <li class="edit-file" id="<%= page.id %>" data-kind="pages"><%= page.name.gsub('<br>', '') %></li>
+                  <li class="edit-asset" id="<%= page.id %>" data-kind="pages" data-toggle= "modal" data-target= "#AssetEditModal">
+                    <i class="fab fa-html5 white-icon"> </i>
+                    <%= link_to page.name.gsub('<br>', ''), page_path(page), remote: true %>
+                  </li>
                 <% end %>
+              </ul>
+            </li>
+
+            <li><a href="#">Blogs</a>
+              <ul id="blogs-ul">
+                <li><%= link_to("New Blog", new_page_path, id: "new-page") %></li>
               </ul>
             </li>
           </ul>

@@ -14,7 +14,9 @@ module Cms
     # GET /layouts/1.json
     def show
       respond_to do |format|
-        format.json { render json: @layout }
+        format.html { render json: { name: @layout.name, content: @layout.content, id: @layout.id } }
+        format.js { render :show, status: 200 }
+        format.json { render json: { name: @layout.name, content: @layout.content, id: @layout.id } }
       end
     end
 

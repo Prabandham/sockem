@@ -2,7 +2,7 @@ class Page < ApplicationRecord
   has_paper_trail
   belongs_to :site
   belongs_to :layout, optional: true
-  before_save :determine_path, if: Proc.new { |page| page.path.blank? }
+  before_create :determine_path, if: Proc.new { |page| page.path.blank? }
   validates :name, presence: true
   validates :name, uniqueness: { scope: :site_id }
 

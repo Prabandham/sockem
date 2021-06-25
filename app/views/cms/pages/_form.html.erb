@@ -1,4 +1,9 @@
-<%= form_with(model: page, local: true) do |form| %>
+<button class='edit-file btn btn-small' id="<%=page.id %>", data-kind="pages">
+  <i class="fas fa-edit"></i>
+  <small>(Edit Content)</small>
+</button>
+
+<%= form_with(model: page, remote: true, format: :json, id: "page-update") do |form| %>
   <% if page.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(page.errors.count, "error") %> prohibited this page from being saved:</h2>
@@ -22,13 +27,13 @@
   </div>
 
   <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+    <%= form.label :site_id %>
+    <%= form.text_field :site_id %>
   </div>
 
   <div class="field">
-    <%= form.label :site_id %>
-    <%= form.text_field :site_id %>
+    <%= form.label :layout_id %>
+    <%= form.text_field :layout_id %>
   </div>
 
   <div class="actions">
