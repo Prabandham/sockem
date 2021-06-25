@@ -22,10 +22,14 @@
 //= require codemirror/addons/hint/show-hint
 //= require codemirror/addons/hint/xml-hint
 //= require codemirror/addons/hint/html-hint
-//= require codemirror/modes/xml
-//= require codemirror/modes/javascript
-//= require codemirror/modes/css
-//= require codemirror/modes/htmlmixed
+//= require codemirror/addons/hint/css-hint
+//= require codemirror/addons/dialog/dialog
+//= require codemirror/addons/search/jump-to-line
+//= require codemirror/addons/search/search
+//= require codemirror/addons/search/searchcursor
+//= require codemirror/addons/search/match-highlighter
+//= require codemirror/addons/search/matchesonscrollbar
+//= require codemirror/addons/scroll/annotatescrollbar
 //= require codemirror/addons/lint/lint
 //= require codemirror/addons/lint/html-lint
 //= require codemirror/addons/fold/foldcode
@@ -36,11 +40,16 @@
 //= require codemirror/addons/fold/markdown-fold
 //= require codemirror/addons/fold/comment-fold
 //= require codemirror/addons/edit/closetag
+//= require codemirror/addons/edit/closebrackets
 //= require codemirror/addons/edit/matchbrackets
 //= require codemirror/addons/edit/matchtags
 //= require codemirror/addons/edit/trailingspace
 //= require codemirror/addons/selection/active-line
 //= require codemirror/addons/selection/mark-selection
+//= require codemirror/modes/xml
+//= require codemirror/modes/javascript
+//= require codemirror/modes/css
+//= require codemirror/modes/htmlmixed
 //= require vendor/tree
 //= require vendor/resize-bs-grid
 //= require vendor/bootstrap-dynamic-tabs
@@ -223,7 +232,9 @@ $(function() {
         if(kind === "assets") {
           url = url + ".json"
         }
-    $("#AssetEditModal").modal('toggle');
+    if ($('#AssetEditModal').is(':visible')) {
+      $("#AssetEditModal").modal('toggle');
+    };
     $.get(url, function(result) {
             SetEditor(result, kind);
         });
@@ -300,16 +311,18 @@ $(function() {
             styleActiveLine: true,
             lineWrapping: true,
             autoCloseTags: true,
+            autoCloseBrackets: true,
             matchTags: { bothTags: true },
             lint: true,
             foldGutter: true,
             gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter", "CodeMirror-lint-markers"],
             htmlMode: true,
-            theme: "material",
+            theme: "monokai",
             showTrailingSpace: true,
             extraKeys: {
               "Shift-Tab": autoFormatSelection,
-              "Ctrl-Space": "autocomplete"
+              "Ctrl-Space": "autocomplete",
+              "Alt-F": "findPersistent"
             },
         });
 

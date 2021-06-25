@@ -18,9 +18,12 @@
 @import "vendor/tree";
 @import "codemirror";
 @import "codemirror/themes/material";
+@import "codemirror/themes/monokai";
 @import "codemirror/addons/lint/lint";
 @import "codemirror/addons/hint/show-hint";
 @import "codemirror/addons/fold/foldgutter";
+@import "codemirror/addons/search/matchesonscrollbar";
+@import "codemirror/addons/dialog/dialog";
 
 body {
     font-size: 13px;
