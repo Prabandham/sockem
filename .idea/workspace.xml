@@ -20,12 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7e2b52c6-3126-433c-8a70-ae9f2df41f57" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/assets/javascripts/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/javascripts/application.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/cms/assets_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/cms/assets_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/asset.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/asset.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/cms/assets/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cms/assets/_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/cms/sites/edit_cms.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cms/sites/edit_cms.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +193,9 @@
       <workItem from="1623566222745" duration="971000" />
       <workItem from="1623646545697" duration="10597000" />
       <workItem from="1624015527505" duration="528000" />
-      <workItem from="1624088690391" duration="6863000" />
+      <workItem from="1624088690391" duration="7818000" />
+      <workItem from="1624520300023" duration="5049000" />
+      <workItem from="1624601634041" duration="2498000" />
     </task>
     <servers />
   </component>
@@ -219,10 +219,14 @@
       <screen x="0" y="23" width="1920" height="990" />
     </state>
     <state x="469" y="157" key="SettingsEditor/0.23.1920.990/1920.324.1792.1097@0.23.1920.990" timestamp="1623415531564" />
-    <state x="583" y="250" width="670" height="704" key="search.everywhere.popup" timestamp="1624104006363">
+    <state x="598" y="277" width="596" height="522" key="find.popup" timestamp="1624107155923">
       <screen x="0" y="23" width="1792" height="1030" />
     </state>
-    <state x="583" y="250" width="670" height="704" key="search.everywhere.popup/0.23.1792.1030@0.23.1792.1030" timestamp="1624104006363" />
-    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup/0.23.1920.990/1920.324.1792.1097@0.23.1920.990" timestamp="1624090690911" />
+    <state x="598" y="277" width="596" height="522" key="find.popup/0.23.1792.1030@0.23.1792.1030" timestamp="1624107155923" />
+    <state x="583" y="250" width="670" height="704" key="search.everywhere.popup" timestamp="1624605540288">
+      <screen x="0" y="23" width="1792" height="1030" />
+    </state>
+    <state x="583" y="250" width="670" height="704" key="search.everywhere.popup/0.23.1792.1030@0.23.1792.1030" timestamp="1624605540288" />
+    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup/0.23.1920.990/1920.324.1792.1097@0.23.1920.990" timestamp="1624520761614" />
   </component>
 </project>

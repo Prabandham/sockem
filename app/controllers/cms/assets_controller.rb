@@ -16,7 +16,7 @@ module Cms
       respond_to do |format|
         format.html { redirect_to site_edit_cms_path(@asset.site) }
         format.js { render :show, status: 200 }
-        format.json { render json: @asset }
+        format.json { render json: { name: @asset.name, content: @asset.attachment.file&.read || '', id: @asset.id } }
       end
     end
 
@@ -47,26 +47,19 @@ module Cms
     # PATCH/PUT /assets/1
     # PATCH/PUT /assets/1.json
     def update
-      binding.pry
       if content_asset_params[:content].present?
-        file = Tempfile.new(SecureRandom.uuid)
+        file_name_array = content_asset_params[:name].split('.')
+        file = Tempfile.new([file_name_array.first, ".#{file_name_array.last}"])
         file.write(content_asset_params[:content])
         file.rewind
         file.read
-        @asset.attachment = file
+        @asset.attachment = File.open(file.path)
         @asset.save
         file.close
         file.unlink
       end
-      respond_to do |format|
-        if @asset.update(asset_params)
-          format.html { redirect_to @asset, notice: 'Asset was successfully updated.' }
-          format.js { render :show, status: :ok, location: @asset }
-        else
-          format.html { render :edit }
-          format.js { render json: @asset.errors, status: :unprocessable_entity }
-        end
-      end
+      @asset.update(asset_params)
+      render json: { name: @asset.name, content: @asset.attachment.file&.read || '', id: @asset.id }
     end
 
     # DELETE /assets/1
@@ -111,7 +104,7 @@ module Cms
     end
 
     def content_asset_params
-      params.require(:asset).permit(:content)
+      params.require(:asset).permit(:content, :name)
     end
   end
 end

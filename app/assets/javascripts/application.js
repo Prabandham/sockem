@@ -23,6 +23,8 @@
 //= require codemirror/addons/hint/xml-hint
 //= require codemirror/addons/hint/html-hint
 //= require codemirror/modes/xml
+//= require codemirror/modes/javascript
+//= require codemirror/modes/css
 //= require codemirror/modes/htmlmixed
 //= require codemirror/addons/lint/lint
 //= require codemirror/addons/lint/html-lint
@@ -221,7 +223,8 @@ $(function() {
         if(kind === "assets") {
           url = url + ".json"
         }
-        $.get(url, function(result) {
+    $("#AssetEditModal").modal('toggle');
+    $.get(url, function(result) {
             SetEditor(result, kind);
         });
     });
@@ -281,7 +284,7 @@ $(function() {
         let mode_extension = result.name.split('.')[1];
         let mode;
         if (mode_extension === "js") {
-          mode = "text/javascript"
+          mode = "javascript"
         } else if (mode_extension === "css") {
           mode = "text/css"
         } else if (mode_extension === "html") {
@@ -362,6 +365,11 @@ $(function() {
         return friendlyID;
     }
 
+    $(document).on('ajax:success', '#asset-update', event => {
+      const [response, status, xhr] = event.detail;
+      $("#AssetEditModal").modal('toggle');
+    });
+
     function saveAllEditors() {
         if($(".nav-tabs > li > a").length > 0) {
             $.each($(".nav-tabs > li > a"), function(i,tab_id) {
@@ -379,7 +387,7 @@ $(function() {
                 } else if (kind === "layouts") {
                     data = { layout: { content: $(regex).val() } };
                 } else {
-                  data = { asset: { content: $(regex).val() } };
+                  data = { asset: { content: $(regex).val(), name: name } };
                 }
               $.put(url, data, function(result) {
                     var tabId = contentId.split("#")[1];
