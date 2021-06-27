@@ -107,9 +107,18 @@ $(function() {
         hideTooltip(e.trigger);
     });
 
-    $('#tree').treed({openedClass : 'fas fa-folder-open', closedClass : 'fas fa-folder'});
+    $('#tree').treed({openedClass : 'fas fa-folder-open opened', closedClass : 'fas fa-folder closed'});
     $('#tree').height(window.outerHeight);
-    $("#preview_content").height(window.outerHeight);
+    $('#tree').css({
+      'height': '100%',
+      'overflow': 'scroll',
+      'position': 'fixed',
+      'width': '100%',
+      'padding-bottom': '50px',
+      'background': 'rgb(44, 44, 44)'
+    })
+    $("#preview_content").height(window.innerHeight);
+    
 
     $("#site_name").prev().addClass("purple-icon");
     $("#site_name").click();
@@ -315,7 +324,7 @@ $(function() {
             foldGutter: true,
             gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter", "CodeMirror-lint-markers"],
             htmlMode: true,
-            theme: "material",
+            theme: "monokai",
             showTrailingSpace: true,
             extraKeys: {
               "Shift-Tab": autoFormatSelection,

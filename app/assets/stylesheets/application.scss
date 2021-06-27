@@ -19,6 +19,7 @@
 @import "codemirror";
 @import "codemirror/themes/material";
 @import "codemirror/themes/monokai";
+@import "codemirror/themes/icecoder";
 @import "codemirror/addons/lint/lint";
 @import "codemirror/addons/hint/show-hint";
 @import "codemirror/addons/fold/foldgutter";
@@ -27,6 +28,7 @@
 
 body {
     font-size: 13px;
+    overflow: hidden;
 }
 
 .nav-item a {
@@ -48,19 +50,12 @@ body {
 }
 
 #preview_content {
-    background: #40454a;
+    background: rgb(37, 37, 38);
+    padding: 0;
 }
 
 .purple-icon {
     color: #e06be0;
-}
-
-.pink-icon {
-    color: #ef8585;
-}
-
-.orange-icon {
-    color: #e4be60;
 }
 
 .CodeMirror {
@@ -68,16 +63,39 @@ body {
 }
 
 .nav-tabs {
-    margin-top: 10px;
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
     border-bottom: none !important;
+    background: rgb(37, 37, 38);
+    height: 25px;
+    align-items: center;
+}
+
+.nav-tabs li {
+    padding: 0px 15px 5px 15px;
+    text-align: center;
+    background: #2d2d2d;
+    border-right: 1px solid #000;
+}
+
+.nav-tabs .active {
+    border-bottom: 1px solid yellow;
+    color: #e2c08d;
+    background: rgb(37, 37, 38);
+}
+
+.nav-tabs .active a{
+    color: #e2c08d;
 }
 
 .edit-file {
     cursor: pointer;
 }
 
-.nav-tabs>li>a.active {
-    color: white;
+.nav-tabs >li >a .active {
+    border-bottom: 1px solid yellow;
+    color: #e2c08d;
 }
 
 .edit-asset {
@@ -152,4 +170,43 @@ body {
 
 .CodeMirror-activeline-background {
   background-color: #1b1e21;
+}
+
+// color codes for technologies
+
+.white-icon {
+    color: #F14A29;
+}
+
+.orange-icon {
+    color: #F0DB4F;
+}
+
+.blue-icon {
+    color: #264de4;
+}
+
+.pink-icon {
+    color: #85beef;
+}
+
+.opened {
+    color: #fccc77;
+}
+
+.closed {
+    color: #fccc77;
+}
+
+.CodeMirror-wrap {
+    width: 100% !important;
+    margin-left: 0px !important;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+
+.cm-s-monokai.CodeMirror {
+    background: #000 !important;
+    color: #f8f8f2;
 }

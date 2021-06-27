@@ -1,21 +1,30 @@
-<button class="clipboard-btn btn btn-small" data-clipboard-text="<%= asset.attachment.url %>">
-  <i class="fas fa-copy"></i>
-  <small>(Copy)</small>
-</button>
-<button class='edit-file btn btn-small' id="<%= asset.id %>", data-kind="assets">
-  <i class="fas fa-edit"></i>
-  <small>(Edit Content)</small>
-</button>
-<%= link_to 'Destroy', asset, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger float-right" %>
-<hr />
+<div class="row">
+  <div class="btn-group btn-group-sm w-auto ml-auto mr-3" role="group" aria-label="Basic example">
+    <button class="clipboard-btn btn btn-outline-dark" data-clipboard-text="<%= asset.attachment.url %>">
+      <i class="fas fa-copy"></i>
+      <small>(Copy)</small>
+    </button>
+    <button class='edit-file btn btn-outline-dark' id="<%= asset.id %>", data-kind="assets">
+      <i class="fas fa-edit"></i>
+      <small>(Edit Content)</small>
+    </button>
+  </div>  
+</div>
+<!--<%= link_to 'Destroy', asset, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger float-right" %> -->
+<!-- <hr /> -->
 
 <%= form_with(model: asset, remote: true, format: :json, id: 'asset-update') do |form| %>
   <div class="form-group">
     <%= form.label :priority %>
-    <%= form.text_field :priority, value: asset.priority %>
+    <%= form.text_field :priority, value: asset.priority, class: "form-control" %>
+  </div>
+
+  <div class="modal-footer p-2">
+    <%= link_to 'Destroy', asset, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger mr-auto" %>
+    <%= form.submit class: 'btn btn-primary' %>
   </div>
 
   <div class="actions">
-    <%= form.submit class: 'btn btn-primary' %>
+    
   </div>
 <% end %>
