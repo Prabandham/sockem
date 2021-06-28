@@ -1,7 +1,11 @@
-<button class='edit-file btn btn-small' id="<%=layout.id %>", data-kind="layouts">
-  <i class="fas fa-edit"></i>
-  <small>(Edit Content)</small>
-</button>
+<div class="row">
+  <div class="btn-group btn-group-sm w-auto ml-auto mr-3" role="group" aria-label="Basic example">
+    <button class='edit-file btn btn-outline-dark' id="<%=layout.id %>", data-kind="layouts">
+      <i class="fas fa-edit"></i>
+      Edit Content
+    </button>
+  </div>
+</div>
 
 <%= form_with(model: layout, remote: true, format: :json, id: "layout-update") do |form| %>
   <% if layout.errors.any? %>
@@ -16,17 +20,18 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="form-row">
+    <div class="form-group col-6">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group col-6">
+      <%= form.label :site_id %>
+      <%= form.text_field :site_id, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :site_id %>
-    <%= form.text_field :site_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="modal-footer p-2">
+    <%= form.submit class: 'btn btn-dark float-right' %>
   </div>
 <% end %>

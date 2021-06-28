@@ -1,29 +1,25 @@
-
-
-<p>
-  <strong>Name:</strong>
-  <%= @site.name %>
-</p>
-
-<p>
-  <strong>Domain:</strong>
-  <%= @site.domain %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @site.description %>
-</p>
-
-<p>
-  <strong>Google analytics key:</strong>
-  <%= @site.google_analytics_key %>
-</p>
-
-<p>
-  <strong>Meta:</strong>
-  <%= @site.meta %>
-</p>
-
-<%= link_to 'Edit', edit_site_path(@site) %> |
-<%= link_to 'Back', sites_path %>
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div class="card">
+      <div class="card-header font-weight-bold"><h4><%= @site.name %></h4></div>
+      <div class="card-body">
+        <div class="row">
+          <h6 class="font-weight-normal">Domain: <%= @site.domain %></h6>
+        </div>
+        <div class="row">
+          <h6 class="font-weight-normal">Description: <%= @site.description %></h6>
+        </div>
+        <div class="row">
+          <h6 class="font-weight-normal">Tracking key: <%= @site.google_analytics_key.present? ? @site.google_analytics_key : "N/A" %></h6>
+        </div>
+        <!-- <div class="row">
+          <h5>Meta: <pre><%= @site.meta %></pre></h5>
+        </div> -->
+      </div>
+      <div class="card-footer">
+        <%= link_to 'Back', sites_path, class: 'btn btn-secondary' %>
+        <%= link_to 'Edit', edit_site_path(@site), class: "btn btn-dark float-right" %>
+      </div>
+    </div>
+  </div>
+</div>

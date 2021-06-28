@@ -2,11 +2,11 @@
   <div class="btn-group btn-group-sm w-auto ml-auto mr-3" role="group" aria-label="Basic example">
     <button class="clipboard-btn btn btn-outline-dark" data-clipboard-text="<%= asset.attachment.url %>">
       <i class="fas fa-copy"></i>
-      <small>(Copy)</small>
+      Copy
     </button>
     <button class='edit-file btn btn-outline-dark' id="<%= asset.id %>", data-kind="assets">
       <i class="fas fa-edit"></i>
-      <small>(Edit Content)</small>
+      Edit Content
     </button>
   </div>  
 </div>
@@ -21,7 +21,7 @@
 
   <div class="modal-footer p-2">
     <%= link_to 'Destroy', asset, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger mr-auto" %>
-    <%= form.submit class: 'btn btn-primary' %>
+    <%= form.submit class: 'btn btn-dark' %>
   </div>
 
   <div class="actions">
