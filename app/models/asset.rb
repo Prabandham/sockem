@@ -22,7 +22,7 @@ class Asset < ApplicationRecord
     if kind == 'css'
       "<link rel='stylesheet' type='text/css' href='#{attachment.url}'>"
     elsif kind == 'js'
-      "<script type='text/javascript' src='#{attachment.url}'></script>"
+      "<script src='#{attachment.url}'></script>"
     end
   end
 

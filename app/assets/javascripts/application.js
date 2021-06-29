@@ -126,6 +126,8 @@ $(function() {
     // window.setInterval(function(){
     //     saveAllEditors();
     // }, 10000);
+  
+  window.current_site_id = $("#current-site-id").text().trim();
 
   $(document).keydown(function(e) {
     if ((e.key == 's' || e.key == 'S' ) && (e.ctrlKey || e.metaKey))
@@ -302,14 +304,19 @@ $(function() {
         }
         let mode_extension = result.name.split('.')[1];
         let mode;
+        let indentUnit;
         if (mode_extension === "js") {
-          mode = "javascript"
+          mode = "javascript";
+          indentUnit = 2;
         } else if (mode_extension === "css") {
-          mode = "text/css"
+          mode = "text/css";
+          indentUnit = 2;
         } else if (mode_extension === "html") {
-          mode = "text/html"
+          mode = "text/html";
+          indentUnit = 4;
         } else {
-          mode = "text/htmlmixed"
+          mode = "text/htmlmixed";
+          indentUnit = 4;
         }
         var editor = CodeMirror.fromTextArea(document.getElementById(id), {
             lineNumbers: true,
@@ -318,6 +325,7 @@ $(function() {
             styleActiveLine: true,
             lineWrapping: true,
             autoCloseTags: true,
+            indentUnit: indentUnit,
             autoCloseBrackets: true,
             matchTags: { bothTags: true },
             lint: true,
