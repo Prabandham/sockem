@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :sites do
       get :edit_cms
       post :add_assets
+      resources :messages
     end
     post 'custom-assets', to: 'assets#custom_asset'
   end

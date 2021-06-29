@@ -118,7 +118,7 @@ $(function() {
       'background': 'rgb(44, 44, 44)'
     })
     $("#preview_content").height(window.innerHeight);
-    
+
 
     $("#site_name").prev().addClass("purple-icon");
     $("#site_name").click();
@@ -126,7 +126,7 @@ $(function() {
     // window.setInterval(function(){
     //     saveAllEditors();
     // }, 10000);
-  
+
   window.current_site_id = $("#current-site-id").text().trim();
 
   $(document).keydown(function(e) {
@@ -323,6 +323,7 @@ $(function() {
             mode: mode,
             tabMode: "indent",
             styleActiveLine: true,
+            indentUnit: intendUnit,
             lineWrapping: true,
             autoCloseTags: true,
             indentUnit: indentUnit,

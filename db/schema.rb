@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_14_074130) do
+ActiveRecord::Schema.define(version: 2021_06_29_015729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,19 @@ ActiveRecord::Schema.define(version: 2021_06_14_074130) do
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_layouts_on_name"
     t.index ["site_id"], name: "index_layouts_on_site_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "site_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "content"
+    t.string "blob"
+    t.boolean "read", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["site_id"], name: "index_messages_on_site_id"
   end
 
   create_table "pages", force: :cascade do |t|
