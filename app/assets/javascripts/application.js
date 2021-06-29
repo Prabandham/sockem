@@ -326,7 +326,6 @@ $(function() {
             indentUnit: intendUnit,
             lineWrapping: true,
             autoCloseTags: true,
-            indentUnit: indentUnit,
             autoCloseBrackets: true,
             matchTags: { bothTags: true },
             lint: true,
