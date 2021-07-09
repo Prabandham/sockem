@@ -1,9 +1,16 @@
 module Cms
   class MessagesController < ApplicationController
+    include ActionController::RequestForgeryProtection
+    protect_from_forgery with: :exception, unless: -> { request.format.json? }
+    
     def index
       # TODO: Enable pagination and filter
       @messages = Message.where(site_id: params[:site_id])
-      render json: @messages
+      respond_to do |format|
+        format.html
+        format.json { render json: { data: @messages } }
+      end
+      # render json: @messages      
     end
 
     def create

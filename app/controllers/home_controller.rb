@@ -15,6 +15,7 @@ class HomeController < ApplicationController
     }
     edit_link = "<a class='nav-link' href='/cms/sites/#{@site.id}/edit_cms' target='_blank'>Edit Site</a>"
     hash['include_site_edit_link'] = edit_link if current_admin
+    hash['current_site'] = "<div id='current-site-id' class='d-none'>#{@site.id}</div>"
     @parsed_template = template.render(hash)
   end
 

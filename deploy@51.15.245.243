@@ -1,1 +1,6 @@
-98qZkX80J+ynzRh9AOuONZfAAAUToG4zqhprti9I5XSSvMVikT+ma3+fSZkpNeaJa+Zy/ehOLkc8lBXBhXlgaWXur9o5EVpixh7ONH2zuAhLgSZW1s2IYxRn3Lzwb/LyotMCRZl5t2lwYT4YcWGCTGuP26LTm4V2MGP7GvPbk668vW1mi9hco2KqdRy6qp7NaC3AUqq1H93OUDW/hsCu/2+3UyauA/TedKL1dAltrTDv2yK2DHvpQo//lmGAEq7MrAml/UxPPMMyY+knuLgU3bvJNvaT8DSXgbJM/0eF3SuGWumIxv6ixbrUwawy5Xq0v9OGPZbZes9mlOPauHKu3ZFFXbiHR4MNPYdv0SnyjVhVXi/pawqOOsrOLrr6TLql1cE1iDzx3Vze89Goy/chWS79YZUHZ7qDACko--GMbvfVE1kNH+rqwp--todUflfzlE2Lo0RjpNVOeA==
+# backup db
+docker exec -t aa8a743dd4e1 pg_dumpall -c -U postgres > dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql
+
+
+# Restore db
+cat your_dump.sql | docker exec -i your-db-container psql -U postgres

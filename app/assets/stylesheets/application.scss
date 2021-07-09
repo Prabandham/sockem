@@ -52,6 +52,7 @@ body {
 #preview_content {
     background: rgb(37, 37, 38);
     padding: 0;
+    overflow-y: hidden;
 }
 
 .purple-icon {
@@ -201,12 +202,46 @@ body {
 .CodeMirror-wrap {
     width: 100% !important;
     margin-left: 0px !important;
-    padding-top: 25px;
+    padding-top: 40px;
     padding-bottom: 25px;
 }
 
+.CodeMirror-dialog-top {
+    border-bottom: 0;
+    top: auto;
+    border-top: 1px solid #eee;
+    bottom: 0;
+  }
+
+  .CodeMirror-scroll {
+      overflow-y: scroll !important;
+      overflow-x: auto !important;
+  }
 
 .cm-s-monokai.CodeMirror {
     background: #000 !important;
     color: #f8f8f2;
+}
+
+// accordion
+.collapsible-link {
+    width: 100%;
+    position: relative;
+    text-align: left;
+}
+
+.collapsible-link::before {
+    content: '\f077';
+    position: absolute;
+    top: 50%;
+    right: 0.8rem;
+    transform: translateY(-50%);
+    display: block;
+    font-family: "Font Awesome 5 Free";
+    font-size: 1.1rem;
+}
+
+.collapsible-link[aria-expanded='true']::before {
+    content: '\f078';
+    font-family: "Font Awesome 5 Free";
 }

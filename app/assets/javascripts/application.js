@@ -323,7 +323,7 @@ $(function() {
             mode: mode,
             tabMode: "indent",
             styleActiveLine: true,
-            indentUnit: intendUnit,
+            indentUnit: indentUnit,
             lineWrapping: true,
             autoCloseTags: true,
             autoCloseBrackets: true,

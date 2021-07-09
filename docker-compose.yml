@@ -5,12 +5,12 @@ volumes:
     external: false
 
 services: 
-  db: 
+  db:
     environment: 
       POSTGRES_PASSWORD: password
     image: postgres:9.5
     volumes: 
-      - db-data:/usr/local/psql/data
+      - /db-data:/usr/local/psql/data
 
   app:
     env_file: .env

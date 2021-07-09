@@ -28,6 +28,7 @@
         </ul>
         <div class="border"></div>
         <div class="card-body float-right">
+          <%= link_to 'Messages', site_messages_path(site), class: "card-link text-white font-weight-bold" %>
           <%= link_to 'Show', site, class: "card-link text-white font-weight-bold" %>
           <%= link_to 'Editor', site_edit_cms_path(site), class: "card-link text-white font-weight-bold", "data-turbolinks": false  %>
           <%= link_to 'Edit', edit_site_path(site), class: "card-link text-white font-weight-bold" %>
