@@ -27,7 +27,7 @@
     </div>
     <div class="form-group col-6">
       <%= form.label :site_id %>
-      <%= form.text_field :site_id, class: "form-control" %>
+      <%= form.text_field :site_id, value: layout.site.name, class: "form-control", disabled: true %>
     </div>
   </div>
 

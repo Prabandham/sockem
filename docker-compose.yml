@@ -1,16 +1,16 @@
 version: "3.3"
 
-volumes: 
+volumes:
   db-data:
     external: false
 
-services: 
+services:
   db:
-    environment: 
+    environment:
       POSTGRES_PASSWORD: password
     image: postgres:9.5
-    volumes: 
-      - /db-data:/usr/local/psql/data
+    volumes:
+      - db-data:/usr/local/psql/data
 
   app:
     env_file: .env
@@ -18,9 +18,9 @@ services:
     stdin_open: true
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
-    volumes: 
+    volumes:
       - .:/usr/src/app
     ports:
       - "3000:3000"
-    depends_on: 
+    depends_on:
       - db

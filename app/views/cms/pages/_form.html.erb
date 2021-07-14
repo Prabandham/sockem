@@ -34,11 +34,17 @@
 
     <div class="form-group col-6">
       <%= form.label :site_id %>
-      <%= form.text_field :site_id, class: "form-control" %>
+      <%= form.text_field :site_id, value: page.site.name, class: "form-control", disabled: true %>
     </div>
+
     <div class="form-group col-6">
       <%= form.label :layout_id %>
-      <%= form.text_field :layout_id, class: "form-control" %>
+      <%= form.select :layout_id, page.site.layouts.collect { |l| [l.name, l.id] }, { include_blank: false}, { class: "form-control" } %>
+    </div>
+
+    <div class="form-group col-12">
+      <%= form.label :meta %>
+      <%= form.text_area :meta, class: "form-control" %>
     </div>
   </div>
 

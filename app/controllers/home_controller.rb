@@ -11,7 +11,8 @@ class HomeController < ApplicationController
     hash = {
       'page' => @page.content,
       'include_stylesheets' => style_sheets,
-      'include_javascripts' => javascripts
+      'include_javascripts' => javascripts,
+      'include_page_meta' => @page.meta
     }
     edit_link = "<a class='nav-link' href='/cms/sites/#{@site.id}/edit_cms' target='_blank'>Edit Site</a>"
     hash['include_site_edit_link'] = edit_link if current_admin

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_29_015729) do
+ActiveRecord::Schema.define(version: 2021_07_14_091739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2021_06_29_015729) do
     t.bigint "layout_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "meta"
     t.index ["layout_id"], name: "index_pages_on_layout_id"
     t.index ["name"], name: "index_pages_on_name"
     t.index ["path"], name: "index_pages_on_path"

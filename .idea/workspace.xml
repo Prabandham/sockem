@@ -20,7 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7e2b52c6-3126-433c-8a70-ae9f2df41f57" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/sockem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sockem.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/cms/pages_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/cms/pages_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/home_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/home_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/cms/layouts/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cms/layouts/_form.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/cms/pages/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cms/pages/_form.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,6 +202,7 @@
       <workItem from="1624601634041" duration="8353000" />
       <workItem from="1624771353036" duration="996000" />
       <workItem from="1624847332602" duration="5376000" />
+      <workItem from="1626252373107" duration="2980000" />
     </task>
     <servers />
   </component>
@@ -223,10 +231,10 @@
     </state>
     <state x="598" y="277" width="596" height="522" key="find.popup/0.23.1792.1030@0.23.1792.1030" timestamp="1624107155923" />
     <state x="641" y="267" width="639" height="522" key="find.popup/0.23.1920.990/1920.324.1792.1097@0.23.1920.990" timestamp="1624876032953" />
-    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup" timestamp="1624932324747">
+    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup" timestamp="1626254419464">
       <screen x="0" y="23" width="1920" height="990" />
     </state>
     <state x="583" y="250" width="670" height="704" key="search.everywhere.popup/0.23.1792.1030@0.23.1792.1030" timestamp="1624612702701" />
-    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup/0.23.1920.990/1920.324.1792.1097@0.23.1920.990" timestamp="1624932324747" />
+    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup/0.23.1920.990/1920.324.1792.1097@0.23.1920.990" timestamp="1626254419464" />
   </component>
 </project>

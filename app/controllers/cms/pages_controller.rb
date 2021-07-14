@@ -82,7 +82,7 @@ module Cms
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
-      params.require(:page).permit(:name, :path, :content, :site_id, :layout_id)
+      params.require(:page).permit(:name, :path, :content, :site_id, :layout_id, :meta)
     end
 
     def update_layout
