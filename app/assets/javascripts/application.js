@@ -454,15 +454,15 @@ $(function() {
         });
     }
 
-    $(document).on("click", ".messageemail", function(e) {
+    $(document).on("click", ".messageEmail", function(e) {
       $(".messagecontent").removeClass("d-none")
       e.preventDefault()
-      $("#messagedetail").html("")   
-      $("#messagedetail").html($(e.target).find(".emailcontent").html())      
-      $("#name").html($(e.target).find(".name").html())
-      $("#emailid").html($(e.target).find(".emailid").html())
-      console.log($(e.target).find(".emailcontent").html())
-
+      console.log($(e.currentTarget).find(".emailcontent").text())
+      $("#messagedetail").html("")
+      $("#messagedetail").html($(e.currentTarget).find(".emailcontent").text().replace(/\n/g, "<br />"))      
+      $("#name").html($(e.currentTarget).find(".name").html())
+      $("#emailid").html($(e.currentTarget).find(".email-list").html())
+      $("#emailid").attr("href", "mailto:" + $(e.currentTarget).find(".email-list").html())
       // alert(e.target +"got called")
     })
 });
