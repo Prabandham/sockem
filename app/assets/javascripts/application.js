@@ -453,4 +453,16 @@ $(function() {
             $("#site_meta").val(JSON.stringify(value));
         });
     }
+
+    $(document).on("click", ".messageemail", function(e) {
+      $(".messagecontent").removeClass("d-none")
+      e.preventDefault()
+      $("#messagedetail").html("")   
+      $("#messagedetail").html($(e.target).find(".emailcontent").html())      
+      $("#name").html($(e.target).find(".name").html())
+      $("#emailid").html($(e.target).find(".emailid").html())
+      console.log($(e.target).find(".emailcontent").html())
+
+      // alert(e.target +"got called")
+    })
 });

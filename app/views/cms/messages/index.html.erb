@@ -4,26 +4,29 @@
 
   <div class="row rounded-lg shadow">
     <!-- Users box-->
-    <div class="col-5 px-0 bg-white">
+    <div class="col-5 px-0 bg-white">      
       <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">krishcool688@gmail.com</h5>
-            <small>3 days ago</small>
+        <% @messages.reverse.each do |message| %>
+          <div class="list-group-item list-group-item-action flex-column align-items-start messageemail">
+            <div class="d-flex w-100 justify-content-between">
+              <div class="d-none emailcontent"><%= message.content %></div>
+              <div class="d-none name"><%= message.first_name.to_s + " " +message.last_name.to_s %></div>
+              <div class="d-none emailcontent"><%= message.content %></div>
+              <h5 class="mb-1 emailid"><%= message.email %></h5>
+              <small><%= message.created_at.strftime("%d/%m/%Y - %I:%M%p") %></small>
+            </div>
           </div>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">abc@gmail.com</h5>
-            <small class="text-muted">3 days ago</small>
-          </div>
-        </a>
+        <% end %>        
       </div>
     </div>
     <!-- Chat Box-->
-    <div class="col-7 px-0 bg-white">
-      
-
+    <div class="col-7 p-3 bg-white">
+      <div class="messagecontent d-none">
+        <h6><b>From:</b> <a href="#" id="emailid"></a></h6>
+        <h6><b>Name:</b>&nbsp;<span id="name"></span></h6>
+        <hr />
+        <h4 id="messagedetail"></h4>
+      </div>
     </div>
   </div>
 </div>
