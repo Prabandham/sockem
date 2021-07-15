@@ -1,31 +1,34 @@
-<!--<h1><%= @messages.first.first_name %></h1> -->
-
 <div class="container py-5 px-4">
-
-  <div class="row rounded-lg shadow">
-    <div class="col-lg-5 px-0 bg-white">
-        <div class="list-group">
-          <% @messages.reverse.each do |message| %>
-            <div class="messageEmail">
-              <div class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                  <h6 class="mb-1 email-list"><%= message.email %></h6>
-                  <div class="d-none emailcontent"><%= message.content %></div>
-                  <div class="d-none name"><%= message.first_name.to_s + " " +message.last_name.to_s %></div>
-                  <small><%= message.created_at.strftime("%d/%m/%Y - %I:%M%p") %></small>
+  <% if @messages.length >= 1 %>
+    <div class="row rounded-lg shadow">
+      <div class="col-lg-5 px-0 bg-white">
+          <div class="list-group">
+            <% @messages.reverse.each do |message| %>
+              <div class="messageEmail">
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h6 class="mb-1 email-list"><%= message.email %></h6>
+                    <div class="d-none emailcontent"><%= message.content %></div>
+                    <div class="d-none name"><%= message.first_name.to_s + " " +message.last_name.to_s %></div>
+                    <small><%= message.created_at.strftime("%d/%m/%Y - %I:%M%p") %></small>
+                  </div>
                 </div>
               </div>
-            </div>
-          <% end %>        
-        </div>
-    </div>
-    <div class="col-lg-7 p-3 bg-white">
-      <div class="messagecontent d-none">
-        <h6><b>From:</b> <a href="#" id="emailid"></a></h6>
-        <h6><b>Name:</b>&nbsp;<span id="name"></span></h6>
-        <hr />
-        <h6 id="messagedetail"></h6>
+            <% end %>
+          </div>
       </div>
-    </div>    
-  </div>
+      <div class="col-lg-7 p-3 bg-white">
+        <div class="messagecontent d-none">
+          <h6><b>From:</b> <a href="#" id="emailid"></a></h6>
+          <h6><b>Name:</b>&nbsp;<span id="name"></span></h6>
+          <hr />
+          <h6 id="messagedetail"></h6>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <div class="row rounded-lg shadow">
+      <h1 class="text-center text-white justify-content-evenly">No Messages yet !</h1>
+    </div>
+  <% end %>
 </div>

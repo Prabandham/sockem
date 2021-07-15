@@ -27,9 +27,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7e2b52c6-3126-433c-8a70-ae9f2df41f57" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/cms/pages_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/cms/pages_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/home_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/home_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/page.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/page.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/cms/messages/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cms/messages/index.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,7 +202,7 @@
       <workItem from="1624601634041" duration="8353000" />
       <workItem from="1624771353036" duration="996000" />
       <workItem from="1624847332602" duration="5376000" />
-      <workItem from="1626252373107" duration="7246000" />
+      <workItem from="1626252373107" duration="7652000" />
     </task>
     <servers />
   </component>
