@@ -25,15 +25,14 @@ module Cms
     end
 
     # GET /pages/1/edit
-    def edit
-    end
+    def edit; end
 
     # POST /pages
     # POST /pages.json
     def create
       @page = Page.find_or_initialize_by(
-          name: page_params[:name].strip.gsub('<br>', ''),
-          site_id: page_params[:site_id]
+        name: page_params[:name].strip.gsub('<br>', ''),
+        site_id: page_params[:site_id]
       )
 
       respond_to do |format|

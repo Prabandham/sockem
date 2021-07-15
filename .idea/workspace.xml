@@ -16,18 +16,20 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7e2b52c6-3126-433c-8a70-ae9f2df41f57" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sockem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sockem.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/cms/pages_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/cms/pages_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/home_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/home_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/cms/layouts/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cms/layouts/_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/cms/pages/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cms/pages/_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/page.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/page.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +48,7 @@
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="site&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/controllers/cms/sites_controller.rb&#10;appli&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/assets/javascripts/application.js&#10;app&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/assets/stylesheets/application.scss&#10;site.rb&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/models/site.rb&#10;puma&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/config/puma.rb&#10;routes&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/config/routes.rb&#10;produc&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/config/environments/production.rb&#10;gem&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/Gemfile&#10;application.html&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/views/layouts/application.html.erb&#10;pages.&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/controllers/cms/pages_controller.rb&#10;assets_con&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/controllers/cms/assets_controller.rb&#10;edit&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/views/cms/sites/edit_cms.html.erb&#10;pro&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/config/environments/production.rb&#10;deve&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/config/environments/development.rb&#10;ass&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/models/asset.rb&#10;pages&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/controllers/cms/pages_controller.rb&#10;.git&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/.gitignore&#10;applic&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/assets/stylesheets/application.scss&#10;page&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/models/page.rb&#10;site.&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/models/site.rb&#10;asset&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/models/asset.rb&#10;create_ass&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/db/migrate/20181017061153_create_assets.rb&#10;layout&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/controllers/cms/layouts_controller.rb&#10;la&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/models/layout.rb&#10;create_pa&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/db/migrate/20181017060918_create_pages.rb&#10;pages_&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/controllers/cms/pages_controller.rb&#10;create_ac&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/db/migrate/20181031083952_create_active_storage_tables.active_storage.rb&#10;rou&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/config/routes.rb&#10;sites_con&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/controllers/cms/sites_controller.rb&#10;page.&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/models/page.rb&#10;route&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/config/routes.rb&#10;add&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/db/migrate/20181029052848_add_layout_id_to_page.rb&#10;pages_con&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/controllers/cms/pages_controller.rb&#10;layouts_con&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/controllers/cms/layouts_controller.rb&#10;page.rb&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/models/page.rb&#10;lay&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/controllers/cms/layouts_controller.rb&#10;applicati&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/app/views/layouts/application.html.erb&#10;rout&#9;FILE&#9;file:///Users/srinidhiparbandham/Spikes/rails/sockem/config/routes.rb&#10;create&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="GenericSQL" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT&#10;GenericSQL" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -202,7 +204,7 @@
       <workItem from="1624601634041" duration="8353000" />
       <workItem from="1624771353036" duration="996000" />
       <workItem from="1624847332602" duration="5376000" />
-      <workItem from="1626252373107" duration="2980000" />
+      <workItem from="1626252373107" duration="7246000" />
     </task>
     <servers />
   </component>
@@ -214,7 +216,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
