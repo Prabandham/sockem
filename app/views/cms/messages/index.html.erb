@@ -2,7 +2,7 @@
   <% if @messages.length >= 1 %>
     <div class="row rounded-lg shadow">
       <div class="col-lg-5 px-0 bg-white">
-          <div class="list-group">
+          <div class="list-group" style="overflow:scroll;height:450px;">
             <% @messages.reverse.each do |message| %>
               <div class="messageEmail">
                 <div class="list-group-item list-group-item-action flex-column align-items-start">
